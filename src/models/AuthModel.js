@@ -15,11 +15,11 @@ const SignUpSchema = yup.object({
   first_name: yup
     .string()
     .required("First name is required")
-    .matches(/A-Za-z/g, "Letters are only allowed"),
+    .matches(/[A-Za-z]/g, "Letters are only allowed"),
   last_name: yup
     .string()
     .required("Last name is required")
-    .matches(/A-Za-z/g, "Letters are only allowed"),
+    .matches(/[A-Za-z]/g, "Letters are only allowed"),
   username: yup.string().required("Username is required"),
   password: yup
     .string()

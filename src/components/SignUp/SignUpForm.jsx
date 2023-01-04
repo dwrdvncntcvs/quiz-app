@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { SignUpSchema } from "../../models/AuthModel";
+import { useCreateUserMutation } from "../../services/user";
 
 const inputFields = [
   {
@@ -39,8 +40,11 @@ const initialData = {
 };
 
 const SignUpForm = () => {
+  const [createUser, result] = useCreateUserMutation();
+  const { isLoading } = result;
+
   const submitAction = (values, { resetForm }) => {
-    console.log(values);
+    createUser({ userData: values });
     resetForm();
   };
 
@@ -57,7 +61,9 @@ const SignUpForm = () => {
             <ErrorMessage name={name} />
           </div>
         ))}
-        <button type="submit">Sign Up</button>
+        <button type="submit" disabled={isLoading}>
+          Sign Up
+        </button>
       </Form>
     </Formik>
   );
