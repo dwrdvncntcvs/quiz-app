@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { SignInSchema } from "../../models/AuthModel";
+import { useAuthorizeUserMutation } from "../../services/user";
 
 const inputFields = [
   {
@@ -10,7 +11,7 @@ const inputFields = [
   },
   {
     name: "password",
-    type: "text",
+    type: "password",
     placeholder: "Password",
   },
 ];
@@ -21,8 +22,12 @@ const initialFormValue = {
 };
 
 const SignInForm = () => {
+  const [authorizeUser, result] = useAuthorizeUserMutation();
+  const { data } = result;
+
   const submitAction = (values, { resetForm }) => {
     console.log(values);
+    authorizeUser({ authData: values });
     resetForm();
   };
 
@@ -33,6 +38,7 @@ const SignInForm = () => {
       onSubmit={submitAction}
     >
       <Form>
+        <h1>{data?.token}</h1>
         {inputFields.map(({ name, placeholder, type }) => (
           <div key={name}>
             <Field name={name} type={type} placeholder={placeholder} />

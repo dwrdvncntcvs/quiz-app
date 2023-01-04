@@ -6,10 +6,22 @@ export const userApi = createApi({
   tagTypes: ["User"],
   endpoints: (builder) => ({
     createUser: builder.mutation({
-      query: ({ userData }) => ({ url: "/users/", body: userData, method: "POST" }),
+      query: ({ userData }) => ({
+        url: "/users/",
+        body: userData,
+        method: "POST",
+      }),
+      invalidatesTags: ["User"],
+    }),
+    authorizeUser: builder.mutation({
+      query: ({ authData }) => ({
+        url: "/users/auth",
+        body: authData,
+        method: "POST",
+      }),
       invalidatesTags: ["User"],
     }),
   }),
 });
 
-export const { useCreateUserMutation } = userApi;
+export const { useCreateUserMutation, useAuthorizeUserMutation } = userApi;
