@@ -15,7 +15,7 @@
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
-    "scss": "^0.2.4",
+    "sass": "^1.57.1",
     "web-vitals": "^2.1.0",
     "yup": "^0.32.11"
   },
