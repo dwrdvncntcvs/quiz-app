@@ -7,8 +7,10 @@ const SignUpSelector = ({ children, toggle, options }) => {
       {children}
       {toggle ? (
         <div className={scss.dropdown}>
-          {options.map(({ label }) => (
-            <button key={label}>{label}</button>
+          {options.map(({ label, onClick }) => (
+            <button key={label} onClick={onClick}>
+              {label}
+            </button>
           ))}
         </div>
       ) : null}
