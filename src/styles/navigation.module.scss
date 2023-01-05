@@ -1,0 +1,28 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.5rem 6rem;
+  background-color: white;
+
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .links {
+    list-style-type: none;
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+
+    button {
+      width: 100px;
+      height: 90%;
+    }
+  }
+}
