@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { useModal } from "../../features/slice/modalSlice";
+import { useDispatch } from "react-redux";
+import { destroyModal } from "../../features/slice/modalSlice";
 import { SignUpSchema } from "../../models/AuthModel";
 import { useCreateUserMutation } from "../../services/user";
 
@@ -41,16 +42,15 @@ const initialData = {
 };
 
 const SignUpForm = () => {
-  const modal = useModal();
+  const dispatch = useDispatch();
   const [createUser, result] = useCreateUserMutation();
   const { isLoading } = result;
 
   const submitAction = (values, { resetForm }) => {
     createUser({ userData: values });
     resetForm();
+    dispatch(destroyModal());
   };
-
-  console.log("Modal Data: ", modal);
 
   return (
     <Formik

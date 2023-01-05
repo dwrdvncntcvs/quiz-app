@@ -1,12 +1,13 @@
 import React from "react";
+import AuthContainer from "../../layouts/AuthContainer";
 import SignUpForm from "./SignUpForm";
 
 const SignUp = () => {
   return (
-    <div>
+    <AuthContainer>
       <h1>Sign Up</h1>
       <SignUpForm />
-    </div>
+    </AuthContainer>
   );
 };
 
