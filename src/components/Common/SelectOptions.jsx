@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import scss from "../../styles/SignUp/signUpSelector.module.scss";
+import scss from "../../styles/selectOptions.module.scss";
 
 const SelectOptions = ({ children, toggle, options, onClose }) => {
   const selectorRef = useRef(null);
