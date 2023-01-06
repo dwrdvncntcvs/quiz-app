@@ -1,9 +1,9 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import { baseUrl } from "../variables";
+import { createApi } from "@reduxjs/toolkit/dist/query/react";
+import { customQuery } from "./config";
 
 export const quizApi = createApi({
   reducerPath: "quizApi",
-  baseQuery: fetchBaseQuery({ baseUrl }),
+  baseQuery: customQuery,
   tagTypes: ["Quiz"],
   endpoints: (builder) => ({
     getQuiz: builder.query({
