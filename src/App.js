@@ -5,6 +5,7 @@ import Home from "./components/Home/Home";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import { useModal } from "./features/slice/modalSlice";
+import ContentContainer from "./layouts/ContentContainer";
 import MainContainer from "./layouts/MainContainer";
 
 function App() {
@@ -13,9 +14,11 @@ function App() {
   return (
     <MainContainer>
       <Navigation />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <ContentContainer>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </ContentContainer>
       {modal.id === "signInModal" && (
         <ModalOverlay>
           <SignIn />
