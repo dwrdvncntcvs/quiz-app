@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
+import useOutsideClick from "../../hooks/useOutsideClick";
 import scss from "../../styles/SignUp/signUpSelector.module.scss";
 
-const SignUpSelector = ({ children, toggle, options }) => {
+const SelectOptions = ({ children, toggle, options, onClose }) => {
+  const selectorRef = useRef(null);
+
+  useOutsideClick(selectorRef, onClose);
+
   return (
-    <div className={scss.selector}>
+    <div className={scss.selector} ref={selectorRef}>
       {children}
       {toggle ? (
         <div className={scss.dropdown}>
@@ -17,4 +22,4 @@ const SignUpSelector = ({ children, toggle, options }) => {
     </div>
   );
 };
-export default SignUpSelector;
+export default SelectOptions;

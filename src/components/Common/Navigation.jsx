@@ -4,8 +4,8 @@ import { useAuth } from "../../features/slice/authSlice";
 import { setModal } from "../../features/slice/modalSlice";
 import scss from "../../styles/navigation.module.scss";
 import { extractInitials } from "../../utils/helpers";
-import SignUpSelector from "../SignUp/SignUpSelector";
 import { NavLink } from "react-router-dom";
+import SelectOptions from "./SelectOptions";
 
 const Navigation = () => {
   const [toggle, setToggle] = useState(false);
@@ -14,7 +14,7 @@ const Navigation = () => {
 
   const { first_name, last_name, username } = user;
 
-  const signUpToggle = () => {
+  const toggleAction = () => {
     setToggle(!toggle);
   };
 
@@ -22,7 +22,7 @@ const Navigation = () => {
     dispatch(setModal({ id: "signInModal" }));
   };
 
-  const options = [
+  const signUpOptions = [
     {
       label: "Quizee",
       onClick: () => {
@@ -39,15 +39,38 @@ const Navigation = () => {
     },
   ];
 
+  const userOptions = [
+    {
+      label: "Profile",
+      onClick: () => {
+        console.log("View Profile");
+      },
+    },
+    {
+      label: "Sign Out",
+      onClick: () => {
+        console.log("Sign Out");
+      },
+    },
+  ];
+
+  const closeToggle = () => {
+    setToggle(false);
+  };
+
   return (
     <nav>
       <p className={scss.title}>{"Quizzy".toUpperCase()}</p>
       {!isAuth ? (
         <div className={scss["btn-group"]}>
           <button onClick={signInModal}>Sign In</button>
-          <SignUpSelector toggle={toggle} options={options}>
-            <button onClick={signUpToggle}>Sign Up</button>
-          </SignUpSelector>
+          <SelectOptions
+            toggle={toggle}
+            options={signUpOptions}
+            onClose={closeToggle}
+          >
+            <button onClick={toggleAction}>Sign Up</button>
+          </SelectOptions>
         </div>
       ) : (
         <ul className={scss.links}>
@@ -60,12 +83,18 @@ const Navigation = () => {
             </NavLink>
           </li>
           <li>
-            <button>
-              <div className={scss.icon}>
-                {extractInitials(first_name, last_name)}
-              </div>{" "}
-              {username}
-            </button>
+            <SelectOptions
+              toggle={toggle}
+              options={userOptions}
+              onClose={closeToggle}
+            >
+              <button onClick={toggleAction}>
+                <div className={scss.icon}>
+                  {extractInitials(first_name, last_name)}
+                </div>{" "}
+                {username}
+              </button>
+            </SelectOptions>
           </li>
         </ul>
       )}
