@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useAuth } from "../../features/slice/authSlice";
+import { destroyAuth, useAuth } from "../../features/slice/authSlice";
 import { setModal } from "../../features/slice/modalSlice";
 import scss from "../../styles/navigation.module.scss";
 import { extractInitials } from "../../utils/helpers";
 import { NavLink } from "react-router-dom";
 import SelectOptions from "./SelectOptions";
+import { useLogOutMutation } from "../../services/user";
 
 const Navigation = () => {
   const [toggle, setToggle] = useState(false);
   const { isAuth, user } = useAuth();
+  const [signOut] = useLogOutMutation();
   const dispatch = useDispatch();
 
   const { first_name, last_name, username } = user;
@@ -50,6 +52,9 @@ const Navigation = () => {
       label: "Sign Out",
       onClick: () => {
         console.log("Sign Out");
+        signOut();
+        dispatch(destroyAuth());
+        setToggle(false);
       },
     },
   ];

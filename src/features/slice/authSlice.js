@@ -18,7 +18,9 @@ const authSlice = createSlice({
       state.user = user;
     },
     destroyAuth: (state) => {
-      state = { ...state, ...initialState };
+      state.isAuth = false;
+      state.user = {};
+      state.token = null;
     },
   },
 });
