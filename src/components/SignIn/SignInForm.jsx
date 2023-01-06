@@ -1,23 +1,12 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../../features/slice/authSlice";
 import { destroyModal } from "../../features/slice/modalSlice";
 import { SignInSchema } from "../../models/AuthModel";
 import { useAuthorizeUserMutation } from "../../services/user";
-
-const inputFields = [
-  {
-    name: "username",
-    type: "text",
-    placeholder: "Username",
-  },
-  {
-    name: "password",
-    type: "password",
-    placeholder: "Password",
-  },
-];
+import scss from "../../styles/authForm.module.scss";
+import { HiEye, HiEyeOff } from "react-icons/hi";
 
 const initialFormValue = {
   username: "",
@@ -28,6 +17,20 @@ const SignInForm = () => {
   const dispatch = useDispatch();
   const [authorizeUser, result] = useAuthorizeUserMutation();
   const { data, isSuccess } = result;
+  const [showPass, setShowPass] = useState(false);
+
+  const inputFields = [
+    {
+      name: "username",
+      type: "text",
+      placeholder: "Username",
+    },
+    {
+      name: "password",
+      type: showPass ? "text" : "password",
+      placeholder: "Password",
+    },
+  ];
 
   useEffect(() => {
     if (isSuccess) {
@@ -41,21 +44,34 @@ const SignInForm = () => {
     resetForm();
   };
 
+  const toggleShowPass = () => {
+    setShowPass((prev) => !prev);
+  };
+
   return (
     <Formik
       initialValues={initialFormValue}
       validationSchema={SignInSchema}
       onSubmit={submitAction}
     >
-      <Form>
+      <Form className={scss["auth-form"]}>
         <h1>{data?.token}</h1>
         {inputFields.map(({ name, placeholder, type }) => (
-          <div key={name}>
-            <Field name={name} type={type} placeholder={placeholder} />
-            <ErrorMessage name={name} />
-          </div>
+          <Fragment key={name}>
+            <div className={scss["form-control"]}>
+              <Field name={name} type={type} placeholder={placeholder} />
+              {name === "password" && (
+                <button type="button" onClick={toggleShowPass}>
+                  {showPass ? <HiEyeOff /> : <HiEye />}
+                </button>
+              )}
+            </div>
+            <p className={scss.error}>
+              <ErrorMessage name={name} />
+            </p>
+          </Fragment>
         ))}
-        <button type="submit">Sign In</button>
+        <button className={scss.submit} type="submit">Sign In</button>
       </Form>
     </Formik>
   );
