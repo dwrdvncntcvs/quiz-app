@@ -27,12 +27,14 @@ const Navigation = () => {
       label: "Quizee",
       onClick: () => {
         dispatch(setModal({ id: "signUpModal", props: { role: "quizee" } }));
+        setToggle(false);
       },
     },
     {
       label: "Quizzer",
       onClick: () => {
         dispatch(setModal({ id: "signUpModal", props: { role: "quizzer" } }));
+        setToggle(false);
       },
     },
   ];
