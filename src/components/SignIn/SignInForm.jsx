@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { setAuth, useAuth } from "../../features/slice/authSlice";
 import { destroyModal } from "../../features/slice/modalSlice";
 import { SignInSchema } from "../../models/AuthModel";
 import { useAuthorizeUserMutation } from "../../services/user";
@@ -26,13 +27,18 @@ const initialFormValue = {
 const SignInForm = () => {
   const dispatch = useDispatch();
   const [authorizeUser, result] = useAuthorizeUserMutation();
-  const { data } = result;
+  const { data, isSuccess } = result;
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setAuth(data));
+      dispatch(destroyModal());
+    }
+  }, [isSuccess, data, dispatch]);
 
   const submitAction = (values, { resetForm }) => {
-    console.log(values);
     authorizeUser({ authData: values });
     resetForm();
-    dispatch(destroyModal());
   };
 
   return (

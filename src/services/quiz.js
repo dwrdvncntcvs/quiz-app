@@ -11,7 +11,7 @@ export const quizApi = createApi({
         url: "/quizzes",
         method: "GET",
       }),
-      invalidatesTags: ["Quiz"],
+      // invalidatesTags: ["Quiz"],
     }),
   }),
 });
