@@ -5,6 +5,7 @@ import { setModal } from "../../features/slice/modalSlice";
 import scss from "../../styles/navigation.module.scss";
 import { extractInitials } from "../../utils/helpers";
 import SignUpSelector from "../SignUp/SignUpSelector";
+import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
   const [toggle, setToggle] = useState(false);
@@ -47,9 +48,24 @@ const Navigation = () => {
           </SignUpSelector>
         </div>
       ) : (
-        <div>
-          <div>{extractInitials(first_name, last_name)}</div> {username}
-        </div>
+        <ul className={scss.links}>
+          <li>
+            <NavLink
+              className={({ isActive }) => (isActive ? scss.active : "")}
+              to={"/"}
+            >
+              Quizzes
+            </NavLink>
+          </li>
+          <li>
+            <button>
+              <div className={scss.icon}>
+                {extractInitials(first_name, last_name)}
+              </div>{" "}
+              {username}
+            </button>
+          </li>
+        </ul>
       )}
     </nav>
   );
