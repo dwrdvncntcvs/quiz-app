@@ -19,7 +19,7 @@ const customQuery = async (args, api, extraOptions) => {
   if (result.error && result.error.status === 403) {
     console.log("Sending Refresh Token");
     const refreshTokenRes = await baseQuery(
-      "/refresh-token",
+      "/users/refresh-token",
       api,
       extraOptions
     );
