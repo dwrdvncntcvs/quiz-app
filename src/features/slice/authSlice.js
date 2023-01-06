@@ -27,4 +27,4 @@ export default authSlice.reducer;
 
 export const { destroyAuth, setAuth } = authSlice.actions;
 
-export const useAuth = () => useSelector((state) => state.isAuth);
+export const useAuth = () => useSelector((state) => state.auth);

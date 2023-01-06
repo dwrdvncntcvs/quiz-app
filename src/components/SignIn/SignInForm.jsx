@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setAuth, useAuth } from "../../features/slice/authSlice";
+import { setAuth } from "../../features/slice/authSlice";
 import { destroyModal } from "../../features/slice/modalSlice";
 import { SignInSchema } from "../../models/AuthModel";
 import { useAuthorizeUserMutation } from "../../services/user";
