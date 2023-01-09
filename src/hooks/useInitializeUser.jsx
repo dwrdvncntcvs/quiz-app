@@ -8,8 +8,6 @@ const useInitializeUser = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(data);
-
     if (data) dispatch(setUser({ user: data }));
   }, [data, dispatch]);
 };
