@@ -10,15 +10,7 @@ const Home = () => {
     <div className={scss.home}>
       <h1>Quizzes</h1>
       {isLoading && <p>Loading...</p>}
-      {data &&
-        data.map(({ title, author, description, _id }) => (
-          <QuizItem
-            key={_id}
-            author={author}
-            title={title}
-            description={description}
-          />
-        ))}
+      {data && data.map((quiz) => <QuizItem key={quiz._id} {...quiz} />)}
     </div>
   );
 };
