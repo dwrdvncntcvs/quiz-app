@@ -16,6 +16,8 @@ const baseQuery = fetchBaseQuery({
 const customQuery = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
+  console.log("Result: ", result);
+
   if (result.error && result.error.status === 403) {
     console.log("Sending Refresh Token");
     const refreshTokenRes = await baseQuery(

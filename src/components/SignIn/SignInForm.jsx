@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setAuth } from "../../features/slice/authSlice";
+import { setAuth, setUser } from "../../features/slice/authSlice";
 import { destroyModal } from "../../features/slice/modalSlice";
 import { SignInSchema } from "../../models/AuthModel";
 import { useAuthorizeUserMutation } from "../../services/user";
@@ -35,6 +35,7 @@ const SignInForm = () => {
   useEffect(() => {
     if (isSuccess) {
       dispatch(setAuth(data));
+      dispatch(setUser(data))
       dispatch(destroyModal());
     }
   }, [isSuccess, data, dispatch]);
@@ -71,7 +72,9 @@ const SignInForm = () => {
             </p>
           </Fragment>
         ))}
-        <button className={scss.submit} type="submit">Sign In</button>
+        <button className={scss.submit} type="submit">
+          Sign In
+        </button>
       </Form>
     </Formik>
   );
