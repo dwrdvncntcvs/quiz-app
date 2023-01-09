@@ -82,7 +82,7 @@ const Navigation = () => {
           <li>
             <NavLink
               className={({ isActive }) => (isActive ? scss.active : "")}
-              to={"/"}
+              to={user && user.role === "quizzer" ? "/quizzer" : "/"}
             >
               Quizzes
             </NavLink>

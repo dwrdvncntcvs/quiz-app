@@ -1,7 +1,7 @@
 import React from "react";
 import { useGetQuizQuery } from "../../services/quiz";
-import QuizCard from "./QuizCard";
 import scss from "../../styles/home.module.scss";
+import QuizItem from "../Quiz/QuizItem";
 
 const Home = () => {
   const { data, isLoading } = useGetQuizQuery();
@@ -10,7 +10,15 @@ const Home = () => {
     <div className={scss.home}>
       <h1>Quizzes</h1>
       {isLoading && <p>Loading...</p>}
-      {data && data.map(({ title, _id }) => <QuizCard key={_id} />)}
+      {data &&
+        data.map(({ title, author, description, _id }) => (
+          <QuizItem
+            key={_id}
+            author={author}
+            title={title}
+            description={description}
+          />
+        ))}
     </div>
   );
 };

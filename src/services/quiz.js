@@ -13,7 +13,14 @@ export const quizApi = createApi({
       }),
       // invalidatesTags: ["Quiz"],
     }),
+    getUserQuizzes: builder.query({
+      query: (userId) => ({
+        url: `/quizzes/${userId}`,
+        method: "GET",
+      }),
+      // invalidatesTags: ["Quiz"],
+    }),
   }),
 });
 
-export const { useGetQuizQuery } = quizApi;
+export const { useGetQuizQuery, useGetUserQuizzesQuery } = quizApi;
