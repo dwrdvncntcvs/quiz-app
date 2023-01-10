@@ -8,9 +8,10 @@ import QuizzesList from "./QuizzesList";
 
 const QuizzerHome = () => {
   const { user } = useAuth();
-  const { _id } = user;
 
-  const { data } = useGetUserQuizzesQuery(_id);
+  console.log(user)
+
+  const { data } = useGetUserQuizzesQuery(user._id);
 
   return (
     <div className={scss["quizzer-home"]}>

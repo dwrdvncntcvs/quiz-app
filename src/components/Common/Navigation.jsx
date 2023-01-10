@@ -4,7 +4,7 @@ import { destroyAuth, useAuth } from "../../features/slice/authSlice";
 import { setModal } from "../../features/slice/modalSlice";
 import scss from "../../styles/navigation.module.scss";
 import { extractInitials } from "../../utils/helpers";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import SelectOptions from "./SelectOptions";
 import { useLogOutMutation } from "../../services/user";
 
@@ -13,6 +13,7 @@ const Navigation = () => {
   const { isAuth, user } = useAuth();
   const [signOut] = useLogOutMutation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { first_name, last_name, username } = user;
 
@@ -21,21 +22,21 @@ const Navigation = () => {
   };
 
   const signInModal = () => {
-    dispatch(setModal({ id: "signInModal" }));
+    navigate("/sign-in");
   };
 
   const signUpOptions = [
     {
       label: "Quizee",
       onClick: () => {
-        dispatch(setModal({ id: "signUpModal", props: { role: "quizee" } }));
+        navigate({ pathname: "/sign-up/quizee" });
         setToggle(false);
       },
     },
     {
       label: "Quizzer",
       onClick: () => {
-        dispatch(setModal({ id: "signUpModal", props: { role: "quizzer" } }));
+        navigate({ pathname: "/sign-up/quizzer" });
         setToggle(false);
       },
     },
@@ -65,7 +66,9 @@ const Navigation = () => {
 
   return (
     <nav>
-      <p className={scss.title}>{"Quizzy".toUpperCase()}</p>
+      <Link className={scss.title} to="/">
+        {"Quizzy".toUpperCase()}
+      </Link>
       {!isAuth ? (
         <div className={scss["btn-group"]}>
           <button onClick={signInModal}>Sign In</button>
