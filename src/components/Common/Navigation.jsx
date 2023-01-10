@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { destroyAuth, useAuth } from "../../features/slice/authSlice";
-import { setModal } from "../../features/slice/modalSlice";
 import scss from "../../styles/navigation.module.scss";
 import { extractInitials } from "../../utils/helpers";
 import { Link, NavLink, useNavigate } from "react-router-dom";
