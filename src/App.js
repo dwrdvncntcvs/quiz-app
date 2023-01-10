@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Navigation from "./components/Common/Navigation";
 import Home from "./components/Home/Home";
+import QuizModifier from "./components/Quiz/QuizModifier";
 import QuizzerHome from "./components/Quiz/QuizzerHome";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
@@ -32,7 +33,10 @@ function App() {
           ) : (
             <>
               <Route path="/" element={<QuizzerHome />}>
-                <Route path="/create-quiz" element={<div>Hello</div>} />
+                <Route
+                  path="/create-quiz"
+                  element={<QuizModifier title={"Create Quiz"} />}
+                />
               </Route>
             </>
           )}

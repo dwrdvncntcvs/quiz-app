@@ -1,0 +1,39 @@
+@import "./global.scss";
+
+.form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+
+  .form-control {
+    display: flex;
+    flex-direction: column;
+
+    input,
+    textarea {
+      padding: 10px;
+      border-radius: 10px;
+      resize: none;
+      border: 2px solid $secondary-color;
+    }
+
+    textarea {
+      height: 300px;
+    }
+  }
+
+  button {
+    border: 3px solid white;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: $secondary-color;
+    color: white;
+    transition: all ease-in-out 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      outline: 2px solid $secondary-color;
+    }
+  }
+}

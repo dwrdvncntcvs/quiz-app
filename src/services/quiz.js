@@ -20,7 +20,20 @@ export const quizApi = createApi({
       }),
       // invalidatesTags: ["Quiz"],
     }),
+    createQuiz: builder.mutation({
+      query: ({ quizData }) => {
+        return {
+          url: "/quizzes",
+          method: "POST",
+          body: quizData,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetQuizQuery, useGetUserQuizzesQuery } = quizApi;
+export const {
+  useGetQuizQuery,
+  useGetUserQuizzesQuery,
+  useCreateQuizMutation,
+} = quizApi;

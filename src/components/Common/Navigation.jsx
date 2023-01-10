@@ -55,6 +55,7 @@ const Navigation = () => {
         signOut();
         dispatch(destroyAuth());
         setToggle(false);
+        navigate("/");
       },
     },
   ];
