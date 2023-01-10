@@ -34,8 +34,12 @@ function App() {
             <>
               <Route path="/" element={<QuizzerHome />}>
                 <Route
-                  path="/create-quiz"
+                  path="create-quiz"
                   element={<QuizModifier title={"Create Quiz"} />}
+                />
+                <Route
+                  path="update-quiz/:quizId"
+                  element={<QuizModifier title={"Update Quiz"} />}
                 />
               </Route>
             </>

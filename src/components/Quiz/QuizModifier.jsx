@@ -1,6 +1,9 @@
 import React from "react";
 import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
-import { useCreateQuizMutation } from "../../services/quiz";
+import {
+  useCreateQuizMutation,
+  useUpdateQuizMutation,
+} from "../../services/quiz";
 import scss from "../../styles/createQuiz.module.scss";
 import QuizForm from "./QuizForm";
 
@@ -23,20 +26,44 @@ const inputFields = [
 ];
 
 const QuizModifier = ({ title }) => {
-  const [createQuiz, result] = useCreateQuizMutation();
+  const [createQuiz, createResult] = useCreateQuizMutation();
+  const [updateQuiz, updateResult] = useUpdateQuizMutation();
   const { getUserQuizzes } = useOutletContext();
-  const { isLoading } = result;
+  const { isLoading: isCreateLoading } = createResult;
+  const { isLoading: isUpdateLoading } = updateResult;
+
+  const isLoading = isCreateLoading || isUpdateLoading;
 
   const navigate = useNavigate();
-  const location = useLocation();
+  const { state } = useLocation();
 
   const goBack = () => {
-    navigate(location.state.from);
+    navigate(state.from);
   };
 
+  let initialData = {
+    title: "",
+    description: "",
+    tag: "",
+  };
+
+  if (state?.quizData) {
+    initialData = {
+      title: state.quizData.title,
+      description: state.quizData.description,
+      tag: state.quizData.tag,
+    };
+  }
+
   const submitQuizAction = (values) => {
-    console.log("Values: ", values);
     createQuiz({ quizData: values });
+    getUserQuizzes();
+    navigate("/");
+  };
+
+  const updateQuizAction = (values) => {
+    const quizId = state?.quizData._id;
+    updateQuiz({ quizId, quizData: values });
     getUserQuizzes();
     navigate("/");
   };
@@ -49,7 +76,8 @@ const QuizModifier = ({ title }) => {
         <QuizForm
           inputFields={inputFields}
           isLoading={isLoading}
-          onSubmit={submitQuizAction}
+          onSubmit={state.forUpdating ? updateQuizAction : submitQuizAction}
+          initialData={initialData}
         />
       </div>
     </>

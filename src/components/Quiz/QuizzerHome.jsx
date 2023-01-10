@@ -25,10 +25,20 @@ const QuizzerHome = () => {
     refetch();
   };
 
+  const updateQuizAction = (quiz) => {
+    navigate(`/update-quiz/${quiz._id}`, {
+      state: { from: "/", forUpdating: true, quizData: quiz },
+    });
+  };
+
   return (
     <div className={scss["quizzer-home"]}>
       <h1>My Quizzes</h1>
-      <QuizzesList quizzes={data} onDeleteQuiz={deleteQuizAction} />
+      <QuizzesList
+        quizzes={data}
+        onDeleteQuiz={deleteQuizAction}
+        onUpdateQuiz={updateQuizAction}
+      />
       <button onClick={createQuizTrigger} id={scss["add-quiz-btn"]}>
         <HiPlus />
       </button>

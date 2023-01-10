@@ -36,6 +36,17 @@ export const quizApi = createApi({
       }),
       invalidatesTags: ["Quiz"],
     }),
+    updateQuiz: builder.mutation({
+      query: ({ quizId, quizData }) => {
+        console.log("Quiz ID: ", quizId);
+        console.log("Quiz Data: ", quizData);
+        return {
+          url: `/quizzes/${quizId}`,
+          method: "PUT",
+          body: quizData,
+        };
+      },
+    }),
   }),
 });
 
@@ -44,4 +55,5 @@ export const {
   useGetUserQuizzesQuery,
   useCreateQuizMutation,
   useDeleteQuizMutation,
+  useUpdateQuizMutation,
 } = quizApi;

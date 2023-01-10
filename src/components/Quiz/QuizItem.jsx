@@ -10,6 +10,7 @@ const QuizItem = ({
   tag,
   totalItems,
   onDeleteQuiz,
+  onUpdateQuiz,
 }) => {
   return (
     <div className={scss.quiz}>
@@ -35,7 +36,7 @@ const QuizItem = ({
             <button id={scss.view}>
               <HiPlus />
             </button>
-            <button id={scss.edit}>
+            <button id={scss.edit} onClick={onUpdateQuiz}>
               <HiOutlinePencil />
             </button>
             <button id={scss.delete} onClick={onDeleteQuiz}>
