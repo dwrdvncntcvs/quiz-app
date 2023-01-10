@@ -2,7 +2,14 @@ import React from "react";
 import scss from "../../styles/quizzesItem.module.scss";
 import { HiOutlinePencil, HiOutlineTrash, HiPlus } from "react-icons/hi";
 
-const QuizItem = ({ title, author, description, isAuthor = false, tag }) => {
+const QuizItem = ({
+  title,
+  author,
+  description,
+  isAuthor = false,
+  tag,
+  totalItems,
+}) => {
   return (
     <div className={scss.quiz}>
       <div className={scss.header}>
@@ -19,8 +26,11 @@ const QuizItem = ({ title, author, description, isAuthor = false, tag }) => {
         <span>#{tag.toLowerCase()}</span>
       </div>
       <div className={scss[`footer${isAuthor ? "-author" : ""}`]}>
+        <p className={scss['total-items']}>
+          {totalItems} Question{totalItems > 1 ? "s" : ""}
+        </p>
         {isAuthor ? (
-          <>
+          <div className={scss["btn-group"]}>
             <button id={scss.view}>
               <HiPlus />
             </button>
@@ -30,7 +40,7 @@ const QuizItem = ({ title, author, description, isAuthor = false, tag }) => {
             <button id={scss.delete}>
               <HiOutlineTrash />
             </button>
-          </>
+          </div>
         ) : (
           <>
             <button>Take Quiz</button>
