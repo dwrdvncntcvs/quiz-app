@@ -1,6 +1,6 @@
 import React from "react";
 import scss from "../../styles/quizzesItem.module.scss";
-import { HiOutlinePencil, HiOutlineTrash, HiOutlineEye } from "react-icons/hi";
+import { HiOutlinePencil, HiOutlineTrash, HiPlus } from "react-icons/hi";
 
 const QuizItem = ({ title, author, description, isAuthor = false, tag }) => {
   return (
@@ -22,7 +22,7 @@ const QuizItem = ({ title, author, description, isAuthor = false, tag }) => {
         {isAuthor ? (
           <>
             <button id={scss.view}>
-              <HiOutlineEye />
+              <HiPlus />
             </button>
             <button id={scss.edit}>
               <HiOutlinePencil />
