@@ -1,0 +1,51 @@
+@import "./global.scss";
+
+.card {
+  width: 400px;
+  height: 200px;
+  border: 5px solid $tertiary-color;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
+  .btn-group {
+    background-color: $tertiary-color;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 175px;
+    height: 45px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease 0.2s;
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      flex: 1;
+      background-color: transparent;
+      color: white;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all ease-in-out 0.2s;
+    }
+
+    #delete:hover {
+      background-color: $danger-color;
+      border-bottom-right-radius: 14px;
+    }
+
+    #edit:hover {
+      border-top-left-radius: 10px;
+      background-color: $update-color;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import "./global.scss";
+
+.details {
+  .header {
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      font-size: 3rem;
+      color: $tertiary-color;
+    }
+
+    p {
+      font-size: 1.5rem;
+      font-style: italic;
+      font-weight: 400;
+      color: gray;
+    }
+  }
+
+  .content {
+    height: auto;
+    display: flex;
+    gap: 20px;
+
+    .card-dashed {
+      width: 400px;
+      height: 200px;
+      font-size: 2rem;
+      border-radius: 30px;
+      border: 5px dashed gray;
+      background-color: white;
+      color: gray;
+      transition: all ease-in-out 0.2s;
+      cursor: pointer;
+
+      &:hover {
+        border-color: $tertiary-color;
+        color: $tertiary-color;
+      }
+    }
+  }
+}

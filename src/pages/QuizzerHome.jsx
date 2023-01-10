@@ -1,14 +1,13 @@
 import React from "react";
-import { HiPlus } from "react-icons/hi";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../features/slice/authSlice";
 import {
   useDeleteQuizMutation,
   useGetUserQuizzesQuery,
 } from "../services/quiz";
-import scss from "../styles/quizzerHome.module.scss";
 import QuizzesList from "../components/Quiz/QuizzesList";
 import PageContainer from "../layouts/PageContainer";
+import FloatingButton from "../components/Common/FloatingButton";
 
 const QuizzerHome = () => {
   const { user } = useAuth();
@@ -49,9 +48,7 @@ const QuizzerHome = () => {
           onViewQuiz={viewQuizDetailsAction}
         />
       )}
-      <button onClick={createQuizTrigger} id={scss["add-quiz-btn"]}>
-        <HiPlus />
-      </button>
+      <FloatingButton onClick={createQuizTrigger} />
       <Outlet context={{ getUserQuizzes: refetch }} />
     </PageContainer>
   );
