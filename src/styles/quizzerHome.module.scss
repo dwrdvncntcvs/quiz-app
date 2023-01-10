@@ -1,32 +1,23 @@
 @import "./global.scss";
 
-.quizzer-home {
+#add-quiz-btn {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 80%;
-  height: 100%;
-  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  font-size: 3rem;
+  color: white;
+  background-color: $secondary-color;
+  border: 5px solid white;
+  cursor: pointer;
+  transition: all ease 0.2s;
 
-  #add-quiz-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
-    position: fixed;
-    bottom: 3rem;
-    right: 3rem;
-    font-size: 3rem;
-    color: white;
-    background-color: $secondary-color;
-    border: 5px solid white;
-    cursor: pointer;
-    transition: all ease 0.2s;
-
-    &:hover {
-      outline: 5px solid $secondary-color;
-    }
+  &:hover {
+    outline: 5px solid $secondary-color;
   }
 }

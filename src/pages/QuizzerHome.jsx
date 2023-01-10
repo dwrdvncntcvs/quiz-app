@@ -8,6 +8,7 @@ import {
 } from "../services/quiz";
 import scss from "../styles/quizzerHome.module.scss";
 import QuizzesList from "../components/Quiz/QuizzesList";
+import PageContainer from "../layouts/PageContainer";
 
 const QuizzerHome = () => {
   const { user } = useAuth();
@@ -36,7 +37,7 @@ const QuizzerHome = () => {
   };
 
   return (
-    <div className={scss["quizzer-home"]}>
+    <PageContainer>
       <h1>My Quizzes</h1>
       {isLoading ? (
         <p>Loading...</p>
@@ -52,7 +53,7 @@ const QuizzerHome = () => {
         <HiPlus />
       </button>
       <Outlet context={{ getUserQuizzes: refetch }} />
-    </div>
+    </PageContainer>
   );
 };
 
