@@ -1,6 +1,10 @@
 import React from "react";
 import scss from "../../styles/quizzesItem.module.scss";
-import { HiOutlinePencil, HiOutlineTrash, HiPlus } from "react-icons/hi";
+import {
+  HiOutlinePencil,
+  HiOutlineTrash,
+  HiDotsHorizontal,
+} from "react-icons/hi";
 
 const QuizItem = ({
   title,
@@ -11,6 +15,7 @@ const QuizItem = ({
   totalItems,
   onDeleteQuiz,
   onUpdateQuiz,
+  onViewQuiz,
 }) => {
   return (
     <div className={scss.quiz}>
@@ -33,8 +38,8 @@ const QuizItem = ({
         </p>
         {isAuthor ? (
           <div className={scss["btn-group"]}>
-            <button id={scss.view}>
-              <HiPlus />
+            <button id={scss.view} onClick={onViewQuiz}>
+              <HiDotsHorizontal />
             </button>
             <button id={scss.edit} onClick={onUpdateQuiz}>
               <HiOutlinePencil />

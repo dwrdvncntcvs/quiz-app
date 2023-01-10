@@ -1,13 +1,13 @@
 import React from "react";
 import { HiPlus } from "react-icons/hi";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useAuth } from "../../features/slice/authSlice";
+import { useAuth } from "../features/slice/authSlice";
 import {
   useDeleteQuizMutation,
   useGetUserQuizzesQuery,
-} from "../../services/quiz";
-import scss from "../../styles/quizzerHome.module.scss";
-import QuizzesList from "./QuizzesList";
+} from "../services/quiz";
+import scss from "../styles/quizzerHome.module.scss";
+import QuizzesList from "../components/Quiz/QuizzesList";
 
 const QuizzerHome = () => {
   const { user } = useAuth();
@@ -31,6 +31,10 @@ const QuizzerHome = () => {
     });
   };
 
+  const viewQuizDetailsAction = (quizId) => {
+    navigate(`/quiz/${quizId}`);
+  };
+
   return (
     <div className={scss["quizzer-home"]}>
       <h1>My Quizzes</h1>
@@ -41,6 +45,7 @@ const QuizzerHome = () => {
           quizzes={data}
           onDeleteQuiz={deleteQuizAction}
           onUpdateQuiz={updateQuizAction}
+          onViewQuiz={viewQuizDetailsAction}
         />
       )}
       <button onClick={createQuizTrigger} id={scss["add-quiz-btn"]}>

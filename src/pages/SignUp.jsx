@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import AuthContainer from "../../layouts/AuthContainer";
-import { useCreateUserMutation } from "../../services/user";
-import SignUpForm from "./SignUpForm";
+import AuthContainer from "../layouts/AuthContainer";
+import { useCreateUserMutation } from "../services/user";
+import SignUpForm from "../components/SignUp/SignUpForm";
 
 const SignUp = () => {
   const [showPass, setShowPass] = useState(false);

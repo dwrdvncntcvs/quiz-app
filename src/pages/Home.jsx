@@ -1,7 +1,7 @@
 import React from "react";
-import { useGetQuizQuery } from "../../services/quiz";
-import scss from "../../styles/home.module.scss";
-import QuizzesList from "../Quiz/QuizzesList";
+import { useGetQuizQuery } from "../services/quiz";
+import scss from "../styles/home.module.scss";
+import QuizzesList from "../components/Quiz/QuizzesList";
 
 const Home = () => {
   const { data, isLoading } = useGetQuizQuery();

@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import Navigation from "./components/Common/Navigation";
-import Home from "./components/Home/Home";
+import Home from "./pages/Home";
+import QuizDetails from "./pages/QuizDetails";
 import QuizModifier from "./components/Quiz/QuizModifier";
-import QuizzerHome from "./components/Quiz/QuizzerHome";
-import SignIn from "./components/SignIn/SignIn";
-import SignUp from "./components/SignUp/SignUp";
+import QuizzerHome from "./pages/QuizzerHome";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 import { useAuth } from "./features/slice/authSlice";
 import useInitializeUser from "./hooks/useInitializeUser";
 import ContentContainer from "./layouts/ContentContainer";
@@ -42,6 +43,7 @@ function App() {
                   element={<QuizModifier title={"Update Quiz"} />}
                 />
               </Route>
+              <Route path="/quiz/:quizId" element={<QuizDetails />} />
             </>
           )}
           <Route path="*" element={<div>Page Not Found</div>} />

@@ -4,7 +4,12 @@ import scss from "../../styles/quizzesList.module.scss";
 import { useAuth } from "../../features/slice/authSlice";
 import { mergeName } from "../../utils/helpers";
 
-const QuizzesList = ({ quizzes = [], onDeleteQuiz, onUpdateQuiz }) => {
+const QuizzesList = ({
+  quizzes = [],
+  onDeleteQuiz,
+  onUpdateQuiz,
+  onViewQuiz,
+}) => {
   const { user } = useAuth();
 
   if (quizzes.length === 0) {
@@ -23,6 +28,7 @@ const QuizzesList = ({ quizzes = [], onDeleteQuiz, onUpdateQuiz }) => {
           key={quiz._id}
           onDeleteQuiz={() => onDeleteQuiz(quiz._id)}
           onUpdateQuiz={() => onUpdateQuiz(quiz)}
+          onViewQuiz={() => onViewQuiz(quiz._id)}
         />
       ))}
     </ul>

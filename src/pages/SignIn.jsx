@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setAuth, setUser } from "../../features/slice/authSlice";
-import AuthContainer from "../../layouts/AuthContainer";
-import { useAuthorizeUserMutation } from "../../services/user";
-import SignInForm from "./SignInForm";
+import { setAuth, setUser } from "../features/slice/authSlice";
+import AuthContainer from "../layouts/AuthContainer";
+import { useAuthorizeUserMutation } from "../services/user";
+import SignInForm from "../components/SignIn/SignInForm";
 
 const SignIn = () => {
   const dispatch = useDispatch();
