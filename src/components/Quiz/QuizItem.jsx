@@ -9,6 +9,7 @@ const QuizItem = ({
   isAuthor = false,
   tag,
   totalItems,
+  onDeleteQuiz,
 }) => {
   return (
     <div className={scss.quiz}>
@@ -26,7 +27,7 @@ const QuizItem = ({
         <span>#{tag.toLowerCase()}</span>
       </div>
       <div className={scss[`footer${isAuthor ? "-author" : ""}`]}>
-        <p className={scss['total-items']}>
+        <p className={scss["total-items"]}>
           {totalItems} Question{totalItems > 1 ? "s" : ""}
         </p>
         {isAuthor ? (
@@ -37,7 +38,7 @@ const QuizItem = ({
             <button id={scss.edit}>
               <HiOutlinePencil />
             </button>
-            <button id={scss.delete}>
+            <button id={scss.delete} onClick={onDeleteQuiz}>
               <HiOutlineTrash />
             </button>
           </div>

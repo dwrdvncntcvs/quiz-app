@@ -29,6 +29,13 @@ export const quizApi = createApi({
         };
       },
     }),
+    deleteQuiz: builder.mutation({
+      query: (quizId) => ({
+        url: `/quizzes/${quizId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Quiz"],
+    }),
   }),
 });
 
@@ -36,4 +43,5 @@ export const {
   useGetQuizQuery,
   useGetUserQuizzesQuery,
   useCreateQuizMutation,
+  useDeleteQuizMutation,
 } = quizApi;
