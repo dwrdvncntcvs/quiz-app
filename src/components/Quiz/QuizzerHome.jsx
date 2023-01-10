@@ -8,7 +8,7 @@ import QuizzesList from "./QuizzesList";
 
 const QuizzerHome = () => {
   const { user } = useAuth();
-  const { data } = useGetUserQuizzesQuery(user._id);
+  const { data, refetch } = useGetUserQuizzesQuery(user._id);
   const navigate = useNavigate();
 
   const createQuizTrigger = () => {
@@ -22,7 +22,7 @@ const QuizzerHome = () => {
       <button onClick={createQuizTrigger} id={scss["add-quiz-btn"]}>
         <HiPlus />
       </button>
-      <Outlet />
+      <Outlet context={{ getUserQuizzes: refetch }} />
     </div>
   );
 };

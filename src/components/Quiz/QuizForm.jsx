@@ -1,6 +1,5 @@
 import { Formik, Form, Field } from "formik";
 import React from "react";
-import { useCreateQuizMutation } from "../../services/quiz";
 import scss from "../../styles/quizForm.module.scss";
 
 const initialData = {
@@ -9,34 +8,9 @@ const initialData = {
   tag: "",
 };
 
-const inputFields = [
-  {
-    name: "title",
-    label: "Title",
-    as: "input",
-  },
-  {
-    name: "description",
-    label: "Description",
-    as: "textarea",
-  },
-  {
-    name: "tag",
-    label: "Tag",
-    as: "input",
-  },
-];
-
-const QuizForm = () => {
-  const [createQuiz, result] = useCreateQuizMutation();
-  const { isLoading } = result;
-
-  const submitQuizAction = (values) => {
-    console.log("Values: ", values);
-    createQuiz({ quizData: values });
-  };
+const QuizForm = ({ onSubmit, inputFields, isLoading }) => {
   return (
-    <Formik initialValues={initialData} onSubmit={submitQuizAction}>
+    <Formik initialValues={initialData} onSubmit={onSubmit}>
       <Form className={scss.form}>
         {inputFields.map(({ as, label, name }) => (
           <div className={scss["form-control"]} key={name}>
