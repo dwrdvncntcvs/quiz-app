@@ -11,7 +11,7 @@ import QuizzesList from "./QuizzesList";
 
 const QuizzerHome = () => {
   const { user } = useAuth();
-  const { data, refetch } = useGetUserQuizzesQuery(user._id);
+  const { data, refetch, isLoading } = useGetUserQuizzesQuery(user._id);
   const [deleteQuiz] = useDeleteQuizMutation();
 
   const navigate = useNavigate();
@@ -34,11 +34,15 @@ const QuizzerHome = () => {
   return (
     <div className={scss["quizzer-home"]}>
       <h1>My Quizzes</h1>
-      <QuizzesList
-        quizzes={data}
-        onDeleteQuiz={deleteQuizAction}
-        onUpdateQuiz={updateQuizAction}
-      />
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <QuizzesList
+          quizzes={data}
+          onDeleteQuiz={deleteQuizAction}
+          onUpdateQuiz={updateQuizAction}
+        />
+      )}
       <button onClick={createQuizTrigger} id={scss["add-quiz-btn"]}>
         <HiPlus />
       </button>

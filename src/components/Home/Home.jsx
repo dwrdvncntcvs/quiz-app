@@ -9,8 +9,7 @@ const Home = () => {
   return (
     <div className={scss.home}>
       <h1>Quizzes</h1>
-      {isLoading && <p>Loading...</p>}
-      <QuizzesList quizzes={data} />
+      {isLoading ? <p>Loading...</p> : <QuizzesList quizzes={data} />}
     </div>
   );
 };
