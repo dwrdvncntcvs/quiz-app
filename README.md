@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Quiz App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created to help me improve my understanding and skills in **_[ReactJS](https://reactjs.org/)_**. Upon watching multiple course in different educational websites like Udemy and Pluralsight, I think it is better to learn something if you are practicing it and creating projects with it.
 
-## Available Scripts
+This application were built with **_[ReactJS](https://reactjs.org/)_** with **_[Redux](https://redux-toolkit.js.org/)_** for managing state of the application. This applications maximizes the use of Redux as I used **_[RTK Query](https://redux-toolkit.js.org/rtk-query/overview)_** which is a feature of redux for fetching or sending HTTP request from to the server or API. I chose to use RTK Query for the reason that I'm already using Redux. Initially, I planned to use **_[React Query](https://react-query-v3.tanstack.com/)_** for handling the communication of between the frontend and the backend because it makes sense to use this kind of library for the reason that it makes fetching data easier and more efficient than making my own.
 
-In the project directory, you can run:
+This application has two roles for its users. It is the **_Quizzer_** and the **_Quizee_**.
 
-### `yarn start`
+## Installation Guide
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This project is very simple to install in your local machine. Follow these instructions to get started:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Be sure to have [NodeJs](https://nodejs.org/) installed on your local machine.
 
-### `yarn test`
+- The application uses React version 18+
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Clone the repository to your local machine.
+  ```bash
+  git clone https://github.com/dwrdvncntcvs/quiz-app.git
+  ```
+- Open the directory on your terminal and run the following commands:
 
-### `yarn build`
+  ```bash
+  #Installing dependencies via NPM
+  npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  #installing dependencies via Yarn
+  yarn
+  ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- You should have cloned **_[quiz-app-api](https://github.com/dwrdvncntcvs/quiz-app-api)_** which is the backend for this application.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- After installing the dependencies and running the backend, you can now run the following commands:
 
-### `yarn eject`
+  ```bash
+  #To run or start the application
+  yarn start
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  #To build the application
+  yarn build
+  ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> **_Note:_** _This is only a side project. I think there are still some minor bugs that I wasn't detected but if you have found one, you can tell me and I try to work on it._
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> **_Note:_** _The application state is currently under development._
