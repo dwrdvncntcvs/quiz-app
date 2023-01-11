@@ -7,7 +7,10 @@ import CreateQuestionModal from "../components/Question/CreateQuestionModal";
 import QuestionCard from "../components/Question/QuestionCard";
 import { modalStatus, setModal, useModal } from "../features/slice/modalSlice";
 import PageContainer from "../layouts/PageContainer";
-import { useGetQuestionsQuery } from "../services/question";
+import {
+  useDeleteQuestionMutation,
+  useGetQuestionsQuery,
+} from "../services/question";
 import { useGetQuizByIdQuery } from "../services/quiz";
 import scss from "../styles/quizDetails.module.scss";
 
@@ -21,9 +24,17 @@ const QuizDetails = () => {
   const { data: questionData, refetch: refetchQuestion } = useGetQuestionsQuery(
     { quizId }
   );
+  const [deleteQuestion] = useDeleteQuestionMutation();
 
   const createQuestion = () => {
     dispatch(setModal({ id: "createQuestion" }));
+  };
+
+  const deleteQuestionAction = async (id) => {
+    console.log("Deleting Question ID: ", id);
+    await deleteQuestion({ questionId: id });
+    await refetchQuiz();
+    await refetchQuestion();
   };
 
   return (
@@ -46,6 +57,7 @@ const QuizDetails = () => {
             question={question}
             options={options}
             key={_id}
+            onDelete={deleteQuestionAction}
           />
         ))}
       </div>

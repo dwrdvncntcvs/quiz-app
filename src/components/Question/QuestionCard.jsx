@@ -7,7 +7,7 @@ import {
 } from "react-icons/hi";
 import scss from "../../styles/questionCard.module.scss";
 
-const QuestionCard = ({ id, i, question, options }) => {
+const QuestionCard = ({ id, i, question, options, onDelete }) => {
   const [show, setShow] = useState(false);
 
   const showButtons = () => {
@@ -48,7 +48,7 @@ const QuestionCard = ({ id, i, question, options }) => {
           <button id={scss.edit}>
             <HiOutlinePencil />
           </button>
-          <button id={scss.delete}>
+          <button id={scss.delete} onClick={() => onDelete(id)}>
             <HiOutlineTrash />
           </button>
         </div>
