@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import ModalOverlay from "../components/Common/ModalOverlay";
+import CreateQuestionModal from "../components/Question/CreateQuestionModal";
 import QuestionCard from "../components/Question/QuestionCard";
 import { modalStatus, setModal, useModal } from "../features/slice/modalSlice";
 import PageContainer from "../layouts/PageContainer";
@@ -20,8 +21,6 @@ const QuizDetails = () => {
     dispatch(setModal({ id: "createQuestion" }));
   };
 
-  console.log("Question Data: ", questionData);
-
   return (
     <PageContainer className={scss.details}>
       <div className={scss.header}>
@@ -33,14 +32,22 @@ const QuizDetails = () => {
       </div>
       <div className={scss.content}>
         {questionData?.map(({ _id, question, options }, i) => (
-          <QuestionCard id={_id} i={i} question={question} options={options} />
+          <QuestionCard
+            id={_id}
+            i={i}
+            question={question}
+            options={options}
+            key={_id}
+          />
         ))}
         <button className={scss["card-dashed"]} onClick={createQuestion}>
           Add Question
         </button>
       </div>
       {status === modalStatus.active && id === "createQuestion" && (
-        <ModalOverlay>Hello</ModalOverlay>
+        <ModalOverlay>
+          <CreateQuestionModal />
+        </ModalOverlay>
       )}
     </PageContainer>
   );
