@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../features/slice/authSlice";
 import {
@@ -15,6 +15,10 @@ const QuizzerHome = () => {
   const [deleteQuiz] = useDeleteQuizMutation();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   const createQuizTrigger = () => {
     navigate("/create-quiz", { state: { from: "/" } });
