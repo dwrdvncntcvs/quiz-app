@@ -23,13 +23,15 @@ const QuestionForm = ({ initialData, onSubmit }) => {
               type="text"
               placeholder="Enter your question here..."
             />
-            <ErrorMessage name="question" />
+            <p className={scss.error}>
+              <ErrorMessage name="question" />
+            </p>
             <FieldArray
               name="options"
               render={(arrayHelpers) => (
                 <div className={scss.options}>
                   <div className={scss["options-header"]}>
-                    <h1>{modalProps?.isUpdating ? "Modify" : "Add"} Option</h1>
+                    <h2>{modalProps?.isUpdating ? "Modify" : "Add"} Options</h2>
                     <button
                       type="button"
                       disabled={values.options.length === 4}
@@ -53,10 +55,13 @@ const QuestionForm = ({ initialData, onSubmit }) => {
                             />
                             <Field
                               name={`options[${i}].option`}
+                              className={scss.option}
                               placeholder="Enter your question option here..."
                             />
                           </div>
-                          <ErrorMessage name={`options[${i}].option`} />
+                          <p className={scss.error}>
+                            <ErrorMessage name={`options[${i}].option`} />
+                          </p>
                         </div>
 
                         {i + 1 > 2 && (
