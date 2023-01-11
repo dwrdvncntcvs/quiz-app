@@ -5,11 +5,12 @@ import { setAuth, setUser } from "../features/slice/authSlice";
 import AuthContainer from "../layouts/AuthContainer";
 import { useAuthorizeUserMutation } from "../services/user";
 import SignInForm from "../components/SignIn/SignInForm";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const [authorizeUser, result] = useAuthorizeUserMutation();
-  const { data, isSuccess } = result;
+  const { data, isSuccess, error, isError } = result;
   const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
 
@@ -43,6 +44,10 @@ const SignIn = () => {
     setShowPass((prev) => !prev);
   };
 
+  if (isError) {
+    console.log(error);
+    toast.error(error.data.msg);
+  }
   return (
     <AuthContainer>
       <h1>Sign In</h1>

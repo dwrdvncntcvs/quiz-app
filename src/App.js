@@ -10,6 +10,8 @@ import { useAuth } from "./features/slice/authSlice";
 import useInitializeUser from "./hooks/useInitializeUser";
 import ContentContainer from "./layouts/ContentContainer";
 import MainContainer from "./layouts/MainContainer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   useInitializeUser();
@@ -49,6 +51,7 @@ function App() {
           <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>
       </ContentContainer>
+      <ToastContainer position="bottom-right"/>
     </MainContainer>
   );
 }
