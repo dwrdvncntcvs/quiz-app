@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { destroyModal, useModal } from "../../features/slice/modalSlice";
 import {
   useCreateQuestionMutation,
@@ -39,6 +40,7 @@ const QuestionModifierModal = ({ title, getQuestionData, getQuizData }) => {
     await getQuizData();
     resetForm();
     closeModal();
+    toast.success("Question created successfully");
   };
 
   const updateQuestionAction = async (values) => {
@@ -49,6 +51,7 @@ const QuestionModifierModal = ({ title, getQuestionData, getQuizData }) => {
     });
     await getQuestionData();
     closeModal();
+    toast.success("Question updated successfully");
   };
 
   return (

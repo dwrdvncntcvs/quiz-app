@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../features/slice/authSlice";
 import {
@@ -8,6 +8,7 @@ import {
 import QuizzesList from "../components/Quiz/QuizzesList";
 import PageContainer from "../layouts/PageContainer";
 import FloatingButton from "../components/Common/FloatingButton";
+import { toast } from "react-toastify";
 
 const QuizzerHome = () => {
   const { user } = useAuth();
@@ -16,17 +17,14 @@ const QuizzerHome = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
-
   const createQuizTrigger = () => {
     navigate("/create-quiz", { state: { from: "/" } });
   };
 
-  const deleteQuizAction = (id) => {
+  const deleteQuizAction = async (id) => {
     deleteQuiz(id);
-    refetch();
+    await refetch();
+    toast.success("Quiz deleted successfully");
   };
 
   const updateQuizAction = (quiz) => {

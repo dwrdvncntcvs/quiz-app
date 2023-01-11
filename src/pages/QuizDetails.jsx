@@ -13,6 +13,7 @@ import {
 } from "../services/question";
 import { useGetQuizByIdQuery } from "../services/quiz";
 import scss from "../styles/quizDetails.module.scss";
+import { toast } from "react-toastify";
 
 const QuizDetails = () => {
   const { status, id } = useModal();
@@ -35,6 +36,7 @@ const QuizDetails = () => {
     await deleteQuestion({ questionId: id });
     await refetchQuiz();
     await refetchQuestion();
+    toast.success("Question deleted successfully");
   };
 
   const editQuestionAction = (questionData) => {

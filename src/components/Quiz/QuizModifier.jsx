@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   useCreateQuizMutation,
   useUpdateQuizMutation,
@@ -59,6 +60,7 @@ const QuizModifier = ({ title }) => {
     createQuiz({ quizData: values });
     getUserQuizzes();
     navigate("/");
+    toast.success("Quiz created successfully");
   };
 
   const updateQuizAction = (values) => {
@@ -66,6 +68,7 @@ const QuizModifier = ({ title }) => {
     updateQuiz({ quizId, quizData: values });
     getUserQuizzes();
     navigate("/");
+    toast.success("Quiz updated successfully");
   };
 
   return (
