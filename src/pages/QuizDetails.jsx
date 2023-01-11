@@ -14,8 +14,12 @@ const QuizDetails = () => {
   const { status, id } = useModal();
   const dispatch = useDispatch();
   const { quizId } = useParams();
-  const { data: quizData } = useGetQuizByIdQuery({ quizId });
-  const { data: questionData } = useGetQuestionsQuery({ quizId });
+  const { data: quizData, refetch: refetchQuiz } = useGetQuizByIdQuery({
+    quizId,
+  });
+  const { data: questionData, refetch: refetchQuestion } = useGetQuestionsQuery(
+    { quizId }
+  );
 
   const createQuestion = () => {
     dispatch(setModal({ id: "createQuestion" }));
@@ -46,7 +50,10 @@ const QuizDetails = () => {
       </div>
       {status === modalStatus.active && id === "createQuestion" && (
         <ModalOverlay>
-          <CreateQuestionModal />
+          <CreateQuestionModal
+            getQuestionData={refetchQuestion}
+            getQuizData={refetchQuiz}
+          />
         </ModalOverlay>
       )}
     </PageContainer>

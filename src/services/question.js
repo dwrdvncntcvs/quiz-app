@@ -12,7 +12,14 @@ export const questionApi = createApi({
         method: "GET",
       }),
     }),
+    createQuestion: builder.mutation({
+      query: ({ quizId, questionData }) => ({
+        url: `/questions/${quizId}`,
+        method: "POST",
+        body: questionData,
+      }),
+    }),
   }),
 });
 
-export const { useGetQuestionsQuery } = questionApi;
+export const { useGetQuestionsQuery, useCreateQuestionMutation } = questionApi;

@@ -1,8 +1,13 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import { useCreateQuestionMutation } from "../../services/question";
 import scss from "../../styles/createQuestionModal.module.scss";
 import QuestionForm from "./QuestionForm";
 
-const CreateQuestionModal = () => {
+const CreateQuestionModal = ({ getQuestionData, getQuizData }) => {
+  const [createQuestion] = useCreateQuestionMutation();
+  const { quizId } = useParams();
+
   const initialData = {
     question: "",
     options: [
@@ -13,6 +18,9 @@ const CreateQuestionModal = () => {
 
   const submitQuestionAction = (values, { resetForm }) => {
     console.log("Values: ", values);
+    createQuestion({ quizId, questionData: values });
+    getQuestionData();
+    getQuizData();
     resetForm();
   };
 
