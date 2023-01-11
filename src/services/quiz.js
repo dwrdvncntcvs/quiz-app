@@ -49,6 +49,7 @@ export const quizApi = createApi({
         url: `/quizzes/quiz/${quizId}`,
         method: "GET",
       }),
+      invalidatesTags: ["Quiz"],
     }),
   }),
 });

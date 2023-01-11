@@ -1,14 +1,40 @@
 @import "./global.scss";
 
 .card {
-  width: 400px;
-  height: 200px;
+  width: 450px;
+  max-height: 300px;
   border: 5px solid $tertiary-color;
   padding: 20px;
   border-radius: 20px;
   display: flex;
   position: relative;
   flex-direction: column;
+  gap: 10px;
+
+  #question {
+    font-size: 1.25rem;
+    font-weight: bold;
+    font-style: italic;
+    overflow-wrap: break-all;
+    color: $tertiary-color;
+  }
+
+  .option {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  .correct {
+    color: $success-color;
+    font-weight: bold;
+  }
+
+  .wrong {
+    color: $danger-color;
+  }
 
   .btn-group {
     background-color: $tertiary-color;

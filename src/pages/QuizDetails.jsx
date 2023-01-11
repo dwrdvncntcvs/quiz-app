@@ -1,4 +1,5 @@
 import React from "react";
+import { HiPlus } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import ModalOverlay from "../components/Common/ModalOverlay";
@@ -35,6 +36,9 @@ const QuizDetails = () => {
         </p>
       </div>
       <div className={scss.content}>
+        <button className={scss["card-dashed"]} onClick={createQuestion}>
+          <HiPlus /> Question
+        </button>
         {questionData?.map(({ _id, question, options }, i) => (
           <QuestionCard
             id={_id}
@@ -44,9 +48,6 @@ const QuizDetails = () => {
             key={_id}
           />
         ))}
-        <button className={scss["card-dashed"]} onClick={createQuestion}>
-          Add Question
-        </button>
       </div>
       {status === modalStatus.active && id === "createQuestion" && (
         <ModalOverlay>

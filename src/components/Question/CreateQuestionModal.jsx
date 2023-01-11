@@ -1,5 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { destroyModal } from "../../features/slice/modalSlice";
 import { useCreateQuestionMutation } from "../../services/question";
 import scss from "../../styles/createQuestionModal.module.scss";
 import QuestionForm from "./QuestionForm";
@@ -7,6 +9,7 @@ import QuestionForm from "./QuestionForm";
 const CreateQuestionModal = ({ getQuestionData, getQuizData }) => {
   const [createQuestion] = useCreateQuestionMutation();
   const { quizId } = useParams();
+  const dispatch = useDispatch();
 
   const initialData = {
     question: "",
@@ -16,12 +19,17 @@ const CreateQuestionModal = ({ getQuestionData, getQuizData }) => {
     ],
   };
 
-  const submitQuestionAction = (values, { resetForm }) => {
+  const closeModal = () => {
+    dispatch(destroyModal());
+  };
+
+  const submitQuestionAction = async (values, { resetForm }) => {
     console.log("Values: ", values);
-    createQuestion({ quizId, questionData: values });
-    getQuestionData();
-    getQuizData();
+    await createQuestion({ quizId, questionData: values });
+    await getQuestionData();
+    await getQuizData();
     resetForm();
+    closeModal();
   };
 
   return (
