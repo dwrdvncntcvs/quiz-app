@@ -3,8 +3,11 @@ import React, { Fragment } from "react";
 import scss from "../../styles/questionForm.module.scss";
 import { HiOutlineTrash, HiPlus } from "react-icons/hi";
 import { questionSchema } from "../../models/QuestionModel";
+import { useModal } from "../../features/slice/modalSlice";
 
 const QuestionForm = ({ initialData, onSubmit }) => {
+  const { props: modalProps } = useModal();
+
   return (
     <Formik
       initialValues={initialData}
@@ -26,7 +29,7 @@ const QuestionForm = ({ initialData, onSubmit }) => {
               render={(arrayHelpers) => (
                 <div className={scss.options}>
                   <div className={scss["options-header"]}>
-                    <h1>Add Option</h1>
+                    <h1>{modalProps?.isUpdating ? "Modify" : "Add"} Option</h1>
                     <button
                       type="button"
                       disabled={values.options.length === 4}
@@ -72,7 +75,9 @@ const QuestionForm = ({ initialData, onSubmit }) => {
               )}
             />
 
-            <button type="submit">Create Question</button>
+            <button type="submit">
+              {modalProps?.isUpdating ? "Update" : "Add"} Question
+            </button>
           </Form>
         );
       }}

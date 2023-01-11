@@ -3,7 +3,7 @@ import { HiPlus } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import ModalOverlay from "../components/Common/ModalOverlay";
-import CreateQuestionModal from "../components/Question/CreateQuestionModal";
+import QuestionModifierModal from "../components/Question/QuestionModifierModal";
 import QuestionCard from "../components/Question/QuestionCard";
 import { modalStatus, setModal, useModal } from "../features/slice/modalSlice";
 import PageContainer from "../layouts/PageContainer";
@@ -37,6 +37,18 @@ const QuizDetails = () => {
     await refetchQuestion();
   };
 
+  const editQuestionAction = (questionData) => {
+    console.log("Edit Question Modal: ", questionData);
+    dispatch(
+      setModal({
+        id: "editQuestion",
+        props: {
+          ...questionData,
+        },
+      })
+    );
+  };
+
   return (
     <PageContainer className={scss.details}>
       <div className={scss.header}>
@@ -58,12 +70,23 @@ const QuizDetails = () => {
             options={options}
             key={_id}
             onDelete={deleteQuestionAction}
+            onEdit={editQuestionAction}
           />
         ))}
       </div>
       {status === modalStatus.active && id === "createQuestion" && (
         <ModalOverlay>
-          <CreateQuestionModal
+          <QuestionModifierModal
+            title="Create Question"
+            getQuestionData={refetchQuestion}
+            getQuizData={refetchQuiz}
+          />
+        </ModalOverlay>
+      )}
+      {status === modalStatus.active && id === "editQuestion" && (
+        <ModalOverlay>
+          <QuestionModifierModal
+            title="Edit Question"
             getQuestionData={refetchQuestion}
             getQuizData={refetchQuiz}
           />

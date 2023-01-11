@@ -25,6 +25,13 @@ export const questionApi = createApi({
         method: "DELETE",
       }),
     }),
+    updateQuestion: builder.mutation({
+      query: ({ questionId, questionData }) => ({
+        url: `/questions/${questionId}`,
+        method: "PUT",
+        body: questionData,
+      }),
+    }),
   }),
 });
 
@@ -32,4 +39,5 @@ export const {
   useGetQuestionsQuery,
   useCreateQuestionMutation,
   useDeleteQuestionMutation,
+  useUpdateQuestionMutation,
 } = questionApi;
