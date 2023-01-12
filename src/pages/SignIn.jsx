@@ -6,6 +6,7 @@ import AuthContainer from "../layouts/AuthContainer";
 import { useAuthorizeUserMutation } from "../services/user";
 import SignInForm from "../components/SignIn/SignInForm";
 import { toast } from "react-toastify";
+import AuthHeader from "../components/Auth/AuthHeader";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const SignIn = () => {
   }
   return (
     <AuthContainer>
-      <h1>Sign In</h1>
+      <AuthHeader title={"Sign In"} />
       <SignInForm onSubmit={submitAction} />
     </AuthContainer>
   );

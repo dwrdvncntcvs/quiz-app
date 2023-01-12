@@ -18,18 +18,22 @@ const renderComponent = (role) => {
 };
 
 describe("Sign In Component", () => {
+  const message = (role) => {
+    return `You're a ${role}`;
+  };
+
   it("should render the component with the proper params of quizzer", () => {
     renderComponent("quizzer");
 
     const roleNode = screen.getByTestId("role");
-    expect(roleNode.textContent).toEqual("Role: Quizzer");
+    expect(roleNode.textContent).toEqual(message("Quizzer"));
   });
 
   it("should render the component with the proper params of quizee", () => {
     renderComponent("quizee");
 
     const roleNode = screen.getByTestId("role");
-    expect(roleNode.textContent).toEqual("Role: Quizee");
+    expect(roleNode.textContent).toEqual(message("Quizee"));
   });
 
   it("should render an error component if the role is invalid", () => {

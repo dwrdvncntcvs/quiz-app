@@ -1,0 +1,17 @@
+@import "./global.scss";
+
+.title {
+  font-size: 4em;
+  font-weight: bold;
+  color: $secondary-color;
+}
+
+.role {
+  font-size: 1.5rem;
+  color: $tertiary-color;
+
+  span {
+    font-weight: bold;
+    font-style: italic;
+  }
+}

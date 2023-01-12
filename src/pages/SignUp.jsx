@@ -4,11 +4,12 @@ import AuthContainer from "../layouts/AuthContainer";
 import { useCreateUserMutation } from "../services/user";
 import SignUpForm from "../components/SignUp/SignUpForm";
 import InvalidRole from "../components/SignUp/InvalidRole";
+import AuthHeader from "../components/Auth/AuthHeader";
 
 const SignUp = () => {
   const [showPass, setShowPass] = useState(false);
   const { role } = useParams();
-  const roleTransformed = `${role.charAt(0).toUpperCase()}${role.slice(1)}`;
+  const transformedRole = `${role.charAt(0).toUpperCase()}${role.slice(1)}`;
   const navigate = useNavigate();
 
   const inputFields = [
@@ -60,8 +61,7 @@ const SignUp = () => {
         <InvalidRole role={role} />
       ) : (
         <>
-          <h1>Sign Up</h1>
-          <p data-testid="role">Role: {roleTransformed}</p>
+          <AuthHeader title={"Sign Up"} role={transformedRole} />
           <SignUpForm
             inputFields={inputFields}
             isLoading={isLoading}
