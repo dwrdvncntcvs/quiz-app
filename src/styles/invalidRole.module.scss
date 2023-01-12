@@ -30,7 +30,7 @@
 
   .choose {
     display: flex;
-    flex-direction: column;
+
     gap: 10px;
 
     p {
@@ -39,6 +39,7 @@
     }
 
     a {
+      width: 200px;
       background-color: transparent;
       border: 3px solid $tertiary-color;
       color: $tertiary-color;

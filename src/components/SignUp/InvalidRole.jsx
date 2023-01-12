@@ -13,7 +13,6 @@ const InvalidRole = ({ role }) => {
         </p>
       </div>
       <div className={scss.choose}>
-        <p>Sign Up As:</p>
         <Link to={"/sign-up/quizzer"}>Quizzer</Link>
         <Link to={"/sign-up/quizee"}>Quizee</Link>
       </div>
