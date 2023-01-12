@@ -8,24 +8,6 @@ import {
 import scss from "../../styles/createQuiz.module.scss";
 import QuizForm from "./QuizForm";
 
-const inputFields = [
-  {
-    name: "title",
-    label: "Title",
-    as: "input",
-  },
-  {
-    name: "description",
-    label: "Description",
-    as: "textarea",
-  },
-  {
-    name: "tag",
-    label: "Tag",
-    as: "input",
-  },
-];
-
 const QuizModifier = ({ title }) => {
   const [createQuiz, createResult] = useCreateQuizMutation();
   const [updateQuiz, updateResult] = useUpdateQuizMutation();
@@ -77,10 +59,10 @@ const QuizModifier = ({ title }) => {
       <div className={scss["side-panel"]}>
         <h1>{title}</h1>
         <QuizForm
-          inputFields={inputFields}
           isLoading={isLoading}
           onSubmit={state.forUpdating ? updateQuizAction : submitQuizAction}
           initialData={initialData}
+          forUpdating={state.forUpdating}
         />
       </div>
     </>
