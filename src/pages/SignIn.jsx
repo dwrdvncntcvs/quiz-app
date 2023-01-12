@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setAuth, setUser } from "../features/slice/authSlice";
@@ -11,21 +11,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const [authorizeUser, result] = useAuthorizeUserMutation();
   const { data, isSuccess, error, isError } = result;
-  const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
-
-  const inputFields = [
-    {
-      name: "username",
-      type: "text",
-      placeholder: "Username",
-    },
-    {
-      name: "password",
-      type: showPass ? "text" : "password",
-      placeholder: "Password",
-    },
-  ];
 
   useEffect(() => {
     if (isSuccess) {
@@ -35,13 +21,8 @@ const SignIn = () => {
     }
   }, [isSuccess, data, dispatch, navigate]);
 
-  const submitAction = (values, { resetForm }) => {
+  const submitAction = (values) => {
     authorizeUser({ authData: values });
-    resetForm();
-  };
-
-  const toggleShowPass = () => {
-    setShowPass((prev) => !prev);
   };
 
   if (isError) {
@@ -51,12 +32,7 @@ const SignIn = () => {
   return (
     <AuthContainer>
       <h1>Sign In</h1>
-      <SignInForm
-        inputFields={inputFields}
-        onSubmit={submitAction}
-        onTogglePass={toggleShowPass}
-        togglePass={showPass}
-      />
+      <SignInForm onSubmit={submitAction} />
     </AuthContainer>
   );
 };
