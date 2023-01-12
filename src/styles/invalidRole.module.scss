@@ -1,0 +1,58 @@
+@import "./global.scss";
+
+.invalid-role {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  padding: 10px;
+  gap: 20px;
+
+  p {
+    color: $secondary-color;
+
+    span {
+      color: $danger-color;
+      font-weight: bold;
+    }
+  }
+
+  .message-1 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  .message-2 {
+    font-size: 1.5rem;
+    color: gray;
+    font-style: italic;
+  }
+
+  .choose {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    p {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    a {
+      background-color: transparent;
+      border: 3px solid $tertiary-color;
+      color: $tertiary-color;
+      text-decoration: none;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.5rem;
+      border-radius: 10px;
+      transition: all ease-in-out 0.2s;
+
+      &:hover {
+        background-color: $tertiary-color;
+        color: white;
+      }
+    }
+  }
+}

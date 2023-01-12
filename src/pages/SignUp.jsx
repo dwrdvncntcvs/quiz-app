@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import AuthContainer from "../layouts/AuthContainer";
 import { useCreateUserMutation } from "../services/user";
 import SignUpForm from "../components/SignUp/SignUpForm";
+import InvalidRole from "../components/SignUp/InvalidRole";
 
 const SignUp = () => {
   const [showPass, setShowPass] = useState(false);
@@ -55,15 +56,21 @@ const SignUp = () => {
 
   return (
     <AuthContainer>
-      <h1>Sign Up</h1>
-      <p>Role: {roleTransformed}</p>
-      <SignUpForm
-        inputFields={inputFields}
-        isLoading={isLoading}
-        onSubmit={submitAction}
-        onTogglePass={toggleShowPass}
-        togglePass={showPass}
-      />
+      {role !== "quizzer" && role !== "quizee" ? (
+        <InvalidRole role={role} />
+      ) : (
+        <>
+          <h1>Sign Up</h1>
+          <p data-testid="role">Role: {roleTransformed}</p>
+          <SignUpForm
+            inputFields={inputFields}
+            isLoading={isLoading}
+            onSubmit={submitAction}
+            onTogglePass={toggleShowPass}
+            togglePass={showPass}
+          />
+        </>
+      )}
     </AuthContainer>
   );
 };

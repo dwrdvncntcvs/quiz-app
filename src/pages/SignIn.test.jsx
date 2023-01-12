@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { store } from "../features/store";
 import SignIn from "./SignIn";
 
-const renderComponent = (Component) => {
+export const renderComponent = (Component) => {
   return render(
     <Provider store={store}>
       <BrowserRouter>
