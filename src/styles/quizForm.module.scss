@@ -9,6 +9,7 @@
   .form-control {
     display: flex;
     flex-direction: column;
+    gap: 3px;
 
     input,
     textarea {
@@ -21,6 +22,11 @@
     textarea {
       height: 300px;
     }
+  }
+
+  .error {
+    color: $danger-color;
+    text-align: end;
   }
 
   button {
