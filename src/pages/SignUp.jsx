@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AuthContainer from "../layouts/AuthContainer";
 import { useCreateUserMutation } from "../services/user";
@@ -7,52 +7,17 @@ import InvalidRole from "../components/SignUp/InvalidRole";
 import AuthHeader from "../components/Auth/AuthHeader";
 
 const SignUp = () => {
-  const [showPass, setShowPass] = useState(false);
   const { role } = useParams();
   const transformedRole = `${role.charAt(0).toUpperCase()}${role.slice(1)}`;
   const navigate = useNavigate();
 
-  const inputFields = [
-    {
-      name: "first_name",
-      type: "text",
-      placeholder: "First name",
-    },
-    {
-      name: "last_name",
-      type: "text",
-      placeholder: "Last name",
-    },
-    {
-      name: "username",
-      type: "text",
-      placeholder: "Username",
-    },
-    {
-      name: "password",
-      type: showPass ? "text" : "password",
-      placeholder: "Password",
-    },
-    {
-      name: "confirmPassword",
-      type: showPass ? "text" : "password",
-      placeholder: "Confirm Password",
-    },
-  ];
-
   const [createUser, result] = useCreateUserMutation();
   const { isLoading } = result;
 
-  const submitAction = (values, { resetForm }) => {
+  const submitAction = async (values) => {
     const data = { ...values, role };
-
-    createUser({ userData: data });
-    resetForm();
+    await createUser({ userData: data });
     navigate("/sign-in");
-  };
-
-  const toggleShowPass = () => {
-    setShowPass((prev) => !prev);
   };
 
   return (
@@ -62,13 +27,7 @@ const SignUp = () => {
       ) : (
         <>
           <AuthHeader title={"Sign Up"} role={transformedRole} />
-          <SignUpForm
-            inputFields={inputFields}
-            isLoading={isLoading}
-            onSubmit={submitAction}
-            onTogglePass={toggleShowPass}
-            togglePass={showPass}
-          />
+          <SignUpForm isLoading={isLoading} onSubmit={submitAction} />
         </>
       )}
     </AuthContainer>
