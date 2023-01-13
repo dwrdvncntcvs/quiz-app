@@ -9,6 +9,11 @@ import QuizzesList from "../components/Quiz/QuizzesList";
 import PageContainer from "../layouts/PageContainer";
 import FloatingButton from "../components/Common/FloatingButton";
 import { toast } from "react-toastify";
+import {
+  HiDotsHorizontal,
+  HiOutlinePencil,
+  HiOutlineTrash,
+} from "react-icons/hi";
 
 const QuizzerHome = () => {
   const { user } = useAuth();
@@ -21,7 +26,7 @@ const QuizzerHome = () => {
   const navigate = useNavigate();
 
   const createQuizTrigger = () => {
-    navigate("/create-quiz", { state: { from: "/" } });
+    navigate("/quizzer/create-quiz", { state: { from: "/" } });
   };
 
   const deleteQuizAction = async (id) => {
@@ -31,14 +36,32 @@ const QuizzerHome = () => {
   };
 
   const updateQuizAction = (quiz) => {
-    navigate(`/update-quiz/${quiz._id}`, {
+    navigate(`/quizzer/update-quiz/${quiz._id}`, {
       state: { from: "/", forUpdating: true, quizData: quiz },
     });
   };
 
   const viewQuizDetailsAction = (quizId) => {
-    navigate(`/quiz/${quizId}`);
+    navigate(`/quizzer/quiz/${quizId}`);
   };
+
+  const actionButtons = ({ quizId, quizData }) => [
+    {
+      id: "view",
+      Icon: HiDotsHorizontal,
+      onClick: () => viewQuizDetailsAction(quizId),
+    },
+    {
+      id: "edit",
+      Icon: HiOutlinePencil,
+      onClick: () => updateQuizAction(quizData),
+    },
+    {
+      id: "delete",
+      Icon: HiOutlineTrash,
+      onClick: () => deleteQuizAction(quizId),
+    },
+  ];
 
   return (
     <PageContainer>
@@ -46,12 +69,7 @@ const QuizzerHome = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <QuizzesList
-          quizzes={data}
-          onDeleteQuiz={deleteQuizAction}
-          onUpdateQuiz={updateQuizAction}
-          onViewQuiz={viewQuizDetailsAction}
-        />
+        <QuizzesList quizzes={data} actionButtons={actionButtons} />
       )}
       <FloatingButton onClick={createQuizTrigger} />
       <Outlet context={{ getUserQuizzes: refetch }} />

@@ -1,22 +1,27 @@
 import React from "react";
 import scss from "../../styles/quizzesItem.module.scss";
-import {
-  HiOutlinePencil,
-  HiOutlineTrash,
-  HiDotsHorizontal,
-} from "react-icons/hi";
+
 
 const QuizItem = ({
+  _id,
   title,
   author,
   description,
-  isAuthor = false,
   tag,
+
+  isAuthor = false,
   totalItems,
-  onDeleteQuiz,
-  onUpdateQuiz,
-  onViewQuiz,
+  actionButtons = ({ quizId, quizData }) => [],
 }) => {
+  const quizId = _id;
+  const quizData = {
+    _id,
+    title,
+    author,
+    description,
+    tag,
+  };
+
   return (
     <div className={scss.quiz}>
       <div className={scss.header}>
@@ -36,23 +41,16 @@ const QuizItem = ({
         <p className={scss["total-items"]}>
           {totalItems} Question{totalItems > 1 ? "s" : ""}
         </p>
-        {isAuthor ? (
-          <div className={scss["btn-group"]}>
-            <button id={scss.view} onClick={onViewQuiz}>
-              <HiDotsHorizontal />
-            </button>
-            <button id={scss.edit} onClick={onUpdateQuiz}>
-              <HiOutlinePencil />
-            </button>
-            <button id={scss.delete} onClick={onDeleteQuiz}>
-              <HiOutlineTrash />
-            </button>
-          </div>
-        ) : (
-          <>
-            <button>Take Quiz</button>
-          </>
-        )}
+        <div className={scss["btn-group"]}>
+          {actionButtons({ quizId, quizData }).map(
+            ({ id, Icon, label, onClick }) => (
+              <button id={id ? scss[id] : ""} onClick={onClick} key={id}>
+                {Icon && <Icon />}
+                {!!label ? label : null}
+              </button>
+            )
+          )}
+        </div>
       </div>
     </div>
   );
