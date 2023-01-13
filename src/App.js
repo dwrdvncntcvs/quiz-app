@@ -51,7 +51,7 @@ function App() {
           <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>
       </ContentContainer>
-      <ToastContainer position="bottom-right"/>
+      <ToastContainer position="bottom-right" />
     </MainContainer>
   );
 }

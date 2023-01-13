@@ -12,7 +12,10 @@ import { toast } from "react-toastify";
 
 const QuizzerHome = () => {
   const { user } = useAuth();
-  const { data, refetch, isLoading } = useGetUserQuizzesQuery(user._id);
+  const { data, refetch, isLoading } = useGetUserQuizzesQuery({
+    userId: user.id,
+  });
+
   const [deleteQuiz] = useDeleteQuizMutation();
 
   const navigate = useNavigate();

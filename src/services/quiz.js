@@ -14,11 +14,11 @@ export const quizApi = createApi({
       // invalidatesTags: ["Quiz"],
     }),
     getUserQuizzes: builder.query({
-      query: (userId) => ({
+      query: ({ userId }) => ({
         url: `/quizzes/${userId}`,
         method: "GET",
       }),
-      // invalidatesTags: ["Quiz"],
+      invalidatesTags: ["Quiz"],
     }),
     createQuiz: builder.mutation({
       query: ({ quizData }) => {
