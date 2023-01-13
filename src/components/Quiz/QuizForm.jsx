@@ -28,7 +28,7 @@ const QuizForm = ({ onSubmit, isLoading, initialData, forUpdating }) => {
       validationSchema={quizSchema}
       onSubmit={onSubmit}
     >
-      <Form className={scss.form}>
+      <Form className={scss.form} data-testid="form-id">
         {inputFields.map(({ as, label, name }) => (
           <div className={scss["form-control"]} key={name}>
             <label htmlFor={name}>
@@ -41,7 +41,7 @@ const QuizForm = ({ onSubmit, isLoading, initialData, forUpdating }) => {
               as={as}
               data-testid={name}
             ></Field>
-            <p className={scss.error}>
+            <p className={scss.error} data-testid={`error-${name}`}>
               <ErrorMessage name={name} />
             </p>
           </div>
