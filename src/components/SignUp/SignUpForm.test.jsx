@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import SignUpForm from "./SignUpForm";
+import { authErrMsg } from "../../models/AuthModel";
 
 const renderComponent = () => {
   const onSubmit = jest.fn();
@@ -54,10 +55,22 @@ describe("Sign Up Form Component", () => {
     ];
 
     const errNodes = [
-      screen.getByTestId(`error-first_name`),
-      screen.getByTestId(`error-last_name`),
-      screen.getByTestId(`error-username`),
-      screen.getByTestId(`error-password`),
+      {
+        node: screen.getByTestId(`error-first_name`),
+        message: authErrMsg.first_name.required,
+      },
+      {
+        node: screen.getByTestId(`error-last_name`),
+        message: authErrMsg.last_name.required,
+      },
+      {
+        node: screen.getByTestId(`error-username`),
+        message: authErrMsg.username.required,
+      },
+      {
+        node: screen.getByTestId(`error-password`),
+        message: authErrMsg.password.required,
+      },
     ];
 
     const formNode = screen.getByTestId("form-id");
@@ -68,9 +81,8 @@ describe("Sign Up Form Component", () => {
     }
 
     await waitFor(() => {
-      for (let errNode of errNodes) {
-        const errTextContent = errNode.textContent;
-        expect(errNode.textContent).toBe(errTextContent);
+      for (let { node, message } of errNodes) {
+        expect(node.textContent).toBe(message);
       }
     });
   });
@@ -86,12 +98,11 @@ describe("Sign Up Form Component", () => {
     const errNodes = [
       {
         node: screen.getByTestId(`error-password`),
-        message:
-          "Password Minimum eight characters, at least one letter, one number and one special character",
+        message: authErrMsg.password.validation,
       },
       {
         node: screen.getByTestId(`error-confirmPassword`),
-        message: "Password must match",
+        message: authErrMsg.confirmPassword.shouldMatch,
       },
     ];
 
