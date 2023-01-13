@@ -62,6 +62,7 @@ const QuestionModifierModal = ({ title, getQuestionData, getQuizData }) => {
         onSubmit={
           props?.isUpdating ? updateQuestionAction : submitQuestionAction
         }
+        isUpdating={props?.isUpdating}
       />
     </div>
   );
