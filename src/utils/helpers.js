@@ -3,7 +3,9 @@ const mergeName = (firstName, lastName) => {
 };
 
 const extractInitials = (firstName = "", lastName = "") => {
-  return `${firstName.charAt(0).toUpperCase()} ${lastName.charAt(0).toUpperCase()}`;
+  return `${firstName.charAt(0).toUpperCase()} ${lastName
+    .charAt(0)
+    .toUpperCase()}`;
 };
 
 export { mergeName, extractInitials };
