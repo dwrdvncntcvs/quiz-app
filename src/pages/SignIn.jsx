@@ -16,9 +16,12 @@ const SignIn = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      localStorage.setItem("at", data.accessToken);
+      localStorage.setItem("u", JSON.stringify(data.user));
       dispatch(setAuth(data));
       dispatch(setUser(data));
-      navigate("/");
+      if (data.user.role === "quizzer") navigate("/quizzer");
+      if (data.user.role === "quizee") navigate("/");
     }
   }, [isSuccess, data, dispatch, navigate]);
 

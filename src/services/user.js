@@ -29,10 +29,14 @@ export const userApi = createApi({
       }),
     }),
     logOut: builder.mutation({
-      query: () => ({
-        url: "/users/sign-out",
-        method: "POST",
-      }),
+      query: () => {
+        localStorage.removeItem("u");
+        localStorage.removeItem("at");
+        return {
+          url: "/users/sign-out",
+          method: "POST",
+        };
+      },
     }),
   }),
 });

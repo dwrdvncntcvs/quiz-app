@@ -50,11 +50,12 @@ const Navigation = () => {
     },
     {
       label: "Sign Out",
-      onClick: () => {
+      onClick: async () => {
         console.log("Sign Out");
-        signOut();
+        await signOut();
         dispatch(destroyAuth());
         setToggle(false);
+        console.log("Navigating");
         navigate("/");
       },
     },
@@ -82,14 +83,16 @@ const Navigation = () => {
         </div>
       ) : (
         <ul className={scss.links}>
-          <li>
-            <NavLink
-              className={({ isActive }) => (isActive ? scss.active : "")}
-              to={"/"}
-            >
-              Quizzes
-            </NavLink>
-          </li>
+          {user.role === "quizee" && (
+            <li>
+              <NavLink
+                className={({ isActive }) => (isActive ? scss.active : "")}
+                to={"/"}
+              >
+                Quizzes
+              </NavLink>
+            </li>
+          )}
           <li>
             <SelectOptions
               toggle={toggle}

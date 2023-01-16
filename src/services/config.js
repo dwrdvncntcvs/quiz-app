@@ -1,12 +1,12 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/dist/query";
-import { destroyAuth, setAuth } from "../features/slice/authSlice";
+import { destroyAuth, setAuth, setUser } from "../features/slice/authSlice";
 import { baseUrl } from "../variables";
 
 const baseQuery = fetchBaseQuery({
   baseUrl,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
-    const token = getState().auth.token;
+    let token = localStorage.getItem("at") ?? getState().auth.token;
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
     }
@@ -23,9 +23,9 @@ const customQuery = async (args, api, extraOptions) => {
       api,
       extraOptions
     );
-
     if (refreshTokenRes.data) {
       api.dispatch(setAuth({ ...refreshTokenRes.data }));
+      api.dispatch(setUser({ user: { ...refreshTokenRes.data.user } }));
       result = await baseQuery(args, api, extraOptions);
     } else {
       api.dispatch(destroyAuth());
