@@ -1,57 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import useQuizAssessment from "../hooks/useQuizAssessment";
 import PageContainer from "../layouts/PageContainer";
 import { calculateQuizAssessment } from "../models/QuizAssessment";
 import { useGetQuestionsQuery } from "../services/question";
+import { useSaveScoreMutation } from "../services/quizResult";
 import scss from "../styles/quizAssessment.module.scss";
 
 const QuizAssessment = () => {
   const { quizId } = useParams();
   const { data } = useGetQuestionsQuery({ quizId });
+  const [saveScore] = useSaveScoreMutation();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const correctAnswers = data?.map(({ _id, options }) => {
-    return {
-      questionId: _id,
-      correctAnswer: options?.filter(({ isCorrect }) => isCorrect)[0]._id,
-    };
-  });
+  const { changeHandler, correctAnswers, isQuizCompleted, selectedAnswers } =
+    useQuizAssessment(data);
 
-  const [selectedAnswers, setSelectedAnswers] = useState([]);
-
-  const correctAnsLen = correctAnswers?.length;
-  const resultLen = selectedAnswers?.length;
-
-  const isQuizCompleted = correctAnsLen === resultLen;
-
-  const changeHandler = (questionId, optionId) => (e) => {
-    const data = {
-      questionId,
-      selectedAnswer: optionId,
-    };
-
-    setSelectedAnswers((prevState) => {
-      const foundRes = prevState.find(
-        ({ questionId }) => questionId === data.questionId
-      );
-
-      if (!foundRes) return [...prevState, data];
-      else {
-        const newData = prevState.map((res) =>
-          res.questionId === data.questionId ? data : res
-        );
-
-        return newData;
-      }
-    });
-  };
-
-  const submitQuizAction = (e) => {
+  const submitQuizAction = async (e) => {
     const { items, score, totalItems } = calculateQuizAssessment(
       correctAnswers,
       selectedAnswers
     );
+
+    const assessmentData = {
+      score,
+    };
+
+    await saveScore({ quizId, assessmentData });
 
     console.log("Number of correct items: ", score, "/", totalItems);
     console.log("Items: ", items);

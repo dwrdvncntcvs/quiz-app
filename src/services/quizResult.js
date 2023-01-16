@@ -4,9 +4,18 @@ import { customQuery } from "./config";
 const quizResultApi = createApi({
   reducerPath: "quizResultApi",
   baseQuery: customQuery,
-  endpoints: (builder) => ({}),
+  tagTypes: ["QuizResult"],
+  endpoints: (builder) => ({
+    saveScore: builder.mutation({
+      query: ({ quizId, assessmentData }) => ({
+        url: `/quizResults/${quizId}`,
+        method: "POST",
+        body: assessmentData,
+      }),
+    }),
+  }),
 });
 
 export default quizResultApi;
 
-export const {} = quizResultApi;
+export const { useSaveScoreMutation } = quizResultApi;
