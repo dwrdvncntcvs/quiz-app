@@ -27,11 +27,15 @@ const QuizAssessment = () => {
       score,
     };
 
-    await saveScore({ quizId, assessmentData });
+    const {
+      data: { _id: quizResultId },
+    } = await saveScore({ quizId, assessmentData });
+
+    console.log("Quiz Result Id: ", quizResultId);
 
     console.log("Number of correct items: ", score, "/", totalItems);
     console.log("Items: ", items);
-    navigate(`${location.pathname}/result`, { replace: true });
+    navigate(`${location.pathname}/result/${quizResultId}`, { replace: true });
   };
 
   return (

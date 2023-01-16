@@ -51,7 +51,7 @@ function App() {
             <Route element={<RequiredAuth role={"quizee"} />}>
               <Route path="assessment/:quizId" element={<QuizAssessment />} />
               <Route
-                path="assessment/:quizId/result"
+                path="assessment/:quizId/result/:quizResultId"
                 element={<QuizResult />}
               />
             </Route>

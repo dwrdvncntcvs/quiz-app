@@ -13,9 +13,16 @@ const quizResultApi = createApi({
         body: assessmentData,
       }),
     }),
+    getQuizResult: builder.query({
+      query: ({ quizResultId }) => ({
+        url: `/quizResults/quiz/${quizResultId}`,
+        method: "GET",
+      }),
+      invalidatesTags: ["QuizResult"],
+    }),
   }),
 });
 
 export default quizResultApi;
 
-export const { useSaveScoreMutation } = quizResultApi;
+export const { useSaveScoreMutation, useGetQuizResultQuery } = quizResultApi;
