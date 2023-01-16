@@ -1,11 +1,19 @@
 import React from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { HiOutlinePaperAirplane } from "react-icons/hi";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
+import Question from "../components/Assessment/Question";
 import useQuizAssessment from "../hooks/useQuizAssessment";
 import PageContainer from "../layouts/PageContainer";
 import { calculateQuizAssessment } from "../models/QuizAssessment";
 import { useGetQuestionsQuery } from "../services/question";
 import { useSaveScoreMutation } from "../services/quizResult";
 import scss from "../styles/quizAssessment.module.scss";
+import { revertURLQueryToPlainText } from "../utils/helpers";
 
 const QuizAssessment = () => {
   const { quizId } = useParams();
@@ -13,15 +21,15 @@ const QuizAssessment = () => {
   const [saveScore] = useSaveScoreMutation();
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
+
+  const quizTitle = revertURLQueryToPlainText(searchParams.get("title"));
 
   const { changeHandler, correctAnswers, isQuizCompleted, selectedAnswers } =
     useQuizAssessment(data);
 
   const submitQuizAction = async (e) => {
-    const { items, score, totalItems } = calculateQuizAssessment(
-      correctAnswers,
-      selectedAnswers
-    );
+    const { score } = calculateQuizAssessment(correctAnswers, selectedAnswers);
 
     const assessmentData = {
       score,
@@ -30,41 +38,33 @@ const QuizAssessment = () => {
     const {
       data: { _id: quizResultId },
     } = await saveScore({ quizId, assessmentData });
-
-    console.log("Quiz Result Id: ", quizResultId);
-
-    console.log("Number of correct items: ", score, "/", totalItems);
-    console.log("Items: ", items);
     navigate(`${location.pathname}/result/${quizResultId}`, { replace: true });
   };
 
   return (
     <PageContainer className={scss["quiz-assessment"]}>
-      <h1>Quiz Assessment</h1>
-      <p>Quiz ID: {quizId}</p>
-      <ul>
+      <div className={scss.header}>
+        <h1>{quizTitle}</h1>
+        <p>Quiz ID: {quizId}</p>
+      </div>
+      <ol className={scss.questions}>
         {data?.map(({ _id: questionId, question, options }, i) => (
-          <li key={questionId}>
-            <p>{question}</p>
-            <ul>
-              {options.map(({ _id: optionId, option }) => (
-                <li key={optionId}>
-                  <input
-                    type="radio"
-                    name={`question-${i + 1}`}
-                    id={optionId}
-                    onChange={changeHandler(questionId, optionId)}
-                  />
-                  &nbsp;
-                  <label htmlFor={optionId}>{option}</label>
-                </li>
-              ))}
-            </ul>
-          </li>
+          <Question
+            key={questionId}
+            onChange={changeHandler}
+            options={options}
+            question={question}
+            questionId={questionId}
+            questionIndex={i + 1}
+          />
         ))}
-      </ul>
-      <button disabled={!isQuizCompleted} onClick={submitQuizAction}>
-        Submit Quiz
+      </ol>
+      <button
+        className={scss.submit}
+        disabled={!isQuizCompleted}
+        onClick={submitQuizAction}
+      >
+        <HiOutlinePaperAirplane />
       </button>
     </PageContainer>
   );

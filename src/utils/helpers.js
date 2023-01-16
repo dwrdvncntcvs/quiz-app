@@ -20,4 +20,19 @@ const fromNow = (date) => {
   return dayjs(date).fromNow();
 };
 
-export { mergeName, extractInitials, transformDate, fromNow };
+const transformToURLQuery = (title) => {
+  return title.split(" ").join("_");
+};
+
+const revertURLQueryToPlainText = (data) => {
+  return data.split("_").join(" ");
+};
+
+export {
+  mergeName,
+  extractInitials,
+  transformDate,
+  fromNow,
+  transformToURLQuery,
+  revertURLQueryToPlainText,
+};

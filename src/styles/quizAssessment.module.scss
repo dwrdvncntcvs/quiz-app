@@ -1,0 +1,56 @@
+@import "./global.scss";
+
+.quiz-assessment {
+  align-items: center;
+  gap: 30px;
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h1 {
+      font-size: 3rem;
+      color: $tertiary-color;
+    }
+    p {
+      font-size: 1rem;
+      color: gray;
+      text-transform: uppercase;
+      font-style: italic;
+    }
+  }
+
+  .questions {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .submit {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: 5px solid $tertiary-color;
+    color: $tertiary-color;
+    font-size: 2rem;
+    transition: all ease-in-out 0.2s;
+    background-color: white;
+    cursor: pointer;
+    transform: rotateZ(45deg);
+
+    &:hover {
+      background-color: $tertiary-color;
+      color: white;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}

@@ -13,7 +13,10 @@ const RequiredAuth = ({ role }) => {
   ) : isAuth ? (
     <Navigate to={"/"} />
   ) : (
-    <Navigate to={"/sign-in"} state={{ from: location.pathname }} />
+    <Navigate
+      to={"/sign-in"}
+      state={{ from: `${location.pathname}${location.search}` }}
+    />
   );
 };
 

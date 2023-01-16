@@ -15,7 +15,7 @@ const useQuizAssessment = (data = []) => {
 
   const isQuizCompleted = correctAnsLen === resultLen;
 
-  const changeHandler = (questionId, optionId) => (e) => {
+  const changeHandler = (questionId, optionId)  => {
     const data = {
       questionId,
       selectedAnswer: optionId,

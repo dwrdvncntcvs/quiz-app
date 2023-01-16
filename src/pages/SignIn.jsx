@@ -14,7 +14,7 @@ const SignIn = () => {
   const { data, isSuccess, error, isError } = result;
   const navigate = useNavigate();
   const { state } = useLocation();
-
+  
   useEffect(() => {
     if (isSuccess) {
       localStorage.setItem("at", data.accessToken);
@@ -22,7 +22,7 @@ const SignIn = () => {
       dispatch(setAuth(data));
       dispatch(setUser(data));
       const to = state?.from ?? "/";
-      navigate(to, { replace: true });
+      navigate(to, { replace: true, state });
       // if (data.user.role === "quizzer") navigate("/quizzer");
       // if (data.user.role === "quizee") navigate("/");
     }
