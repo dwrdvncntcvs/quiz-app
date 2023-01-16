@@ -67,7 +67,7 @@ const Navigation = () => {
 
   return (
     <nav>
-      <Link className={scss.title} to="/">
+      <Link className={scss.title} to="/" replace={true}>
         {"Quizzy".toUpperCase()}
       </Link>
       {!isAuth ? (
@@ -88,6 +88,7 @@ const Navigation = () => {
               <NavLink
                 className={({ isActive }) => (isActive ? scss.active : "")}
                 to={"/"}
+                replace={true}
               >
                 Quizzes
               </NavLink>

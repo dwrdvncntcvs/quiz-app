@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const QUESTION_CHAR_LIMIT = 10;
+export const QUESTION_CHAR_LIMIT =  15;
 
 export const questionErrMsg = {
   question: {

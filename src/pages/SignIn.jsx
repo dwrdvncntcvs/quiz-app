@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { setAuth, setUser } from "../features/slice/authSlice";
 import AuthContainer from "../layouts/AuthContainer";
 import { useAuthorizeUserMutation } from "../services/user";
@@ -13,6 +13,7 @@ const SignIn = () => {
   const [authorizeUser, result] = useAuthorizeUserMutation();
   const { data, isSuccess, error, isError } = result;
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   useEffect(() => {
     if (isSuccess) {
@@ -20,10 +21,12 @@ const SignIn = () => {
       localStorage.setItem("u", JSON.stringify(data.user));
       dispatch(setAuth(data));
       dispatch(setUser(data));
-      if (data.user.role === "quizzer") navigate("/quizzer");
-      if (data.user.role === "quizee") navigate("/");
+      const to = state?.from ?? "/";
+      navigate(to, { replace: true });
+      // if (data.user.role === "quizzer") navigate("/quizzer");
+      // if (data.user.role === "quizee") navigate("/");
     }
-  }, [isSuccess, data, dispatch, navigate]);
+  }, [isSuccess, data, dispatch, navigate, state]);
 
   const submitAction = (values) => {
     authorizeUser({ authData: values });
