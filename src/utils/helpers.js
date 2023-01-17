@@ -28,6 +28,11 @@ const revertURLQueryToPlainText = (data) => {
   return data.split("_").join(" ");
 };
 
+const generatePathBasedOnRole = (role) => {
+  if (role === "quizzer") return "/quizzer";
+  else if (role === "quizee") return "/";
+};
+
 export {
   mergeName,
   extractInitials,
@@ -35,4 +40,5 @@ export {
   fromNow,
   transformToURLQuery,
   revertURLQueryToPlainText,
+  generatePathBasedOnRole,
 };

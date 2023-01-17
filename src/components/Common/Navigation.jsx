@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { destroyAuth, useAuth } from "../../features/slice/authSlice";
 import scss from "../../styles/navigation.module.scss";
-import { extractInitials } from "../../utils/helpers";
+import { extractInitials, generatePathBasedOnRole } from "../../utils/helpers";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import SelectOptions from "./SelectOptions";
 import { useLogOutMutation } from "../../services/user";
@@ -45,7 +45,7 @@ const Navigation = () => {
     {
       label: "Profile",
       onClick: () => {
-        console.log("View Profile");
+        navigate({ pathname: "/profile" });
       },
     },
     {
@@ -66,7 +66,11 @@ const Navigation = () => {
 
   return (
     <nav>
-      <Link className={scss.title} to="/" replace={true}>
+      <Link
+        className={scss.title}
+        to={generatePathBasedOnRole(user?.role)}
+        replace={true}
+      >
         {"Quizzy".toUpperCase()}
       </Link>
       {!isAuth ? (

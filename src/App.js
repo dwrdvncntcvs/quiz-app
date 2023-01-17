@@ -16,6 +16,7 @@ import RequiredAuth from "./routes/RequiredAuth";
 import AuthRoutes from "./routes/AuthRoutes";
 import QuizAssessment from "./pages/QuizAssessment";
 import QuizResult from "./pages/QuizResult";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -54,6 +55,12 @@ function App() {
                 path="assessment/:quizId/result/:quizResultId"
                 element={<QuizResult />}
               />
+            </Route>
+          </Route>
+
+          <Route path="/profile" element={<Persistence />}>
+            <Route element={<RequiredAuth />}>
+              <Route path="" element={<Profile />} />
             </Route>
           </Route>
 
