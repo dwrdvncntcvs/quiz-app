@@ -39,7 +39,10 @@ const QuizAssessment = () => {
     const {
       data: { _id: quizResultId },
     } = await saveScore({ quizId, assessmentData });
-    navigate(`${location.pathname}/result/${quizResultId}`, { replace: true });
+    navigate(`${location.pathname}/result/${quizResultId}`, {
+      replace: true,
+      state: { title: searchParams.get("title") },
+    });
   };
 
   return (

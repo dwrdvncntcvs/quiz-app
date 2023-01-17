@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import QuizData from "../components/QuizResult/QuizData";
 import ResultDetails from "../components/QuizResult/ResultDetails";
 import PageContainer from "../layouts/PageContainer";
@@ -7,9 +7,20 @@ import { useGetQuizResultQuery } from "../services/quizResult";
 import scss from "../styles/quizResult.module.scss";
 
 const QuizResult = () => {
-  const { quizResultId } = useParams();
+  const { quizResultId, quizId } = useParams();
+  const navigate = useNavigate();
+  const { state } = useLocation();
   const { data } = useGetQuizResultQuery({ quizResultId });
-  console.log("Data: ", data);
+
+  const retakeQuizAction = () => {
+    navigate(`/quizee/assessment/${quizId}?title=${state.title}`, {
+      replace: true,
+    });
+  };
+
+  const takeMoreQuizzesAction = () => {
+    navigate("/");
+  };
 
   return (
     <PageContainer>
@@ -23,8 +34,8 @@ const QuizResult = () => {
           user={data?.user}
         />
         <div className={scss["btn-group"]}>
-          <button>Retake Quiz</button>
-          <button>Take More Quizzes</button>
+          <button onClick={retakeQuizAction}>Retake Quiz</button>
+          <button onClick={takeMoreQuizzesAction}>Take More Quizzes</button>
         </div>
       </div>
     </PageContainer>
