@@ -1,0 +1,79 @@
+@import "./global.scss";
+
+.quizzes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  h1 {
+    color: $tertiary-color;
+    font-size: 3rem;
+  }
+
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .quiz {
+      display: flex;
+      flex-direction: column;
+      width: 48%;
+      padding: 20px;
+      border: 4px solid $tertiary-color;
+      border-radius: 20px;
+      justify-content: space-between;
+      gap: 20px;
+
+      .quiz-content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .header {
+          h2 {
+            font-size: 2.5rem;
+            color: $tertiary-color;
+          }
+
+          p {
+            color: gray;
+            font-size: 1.25rem;
+            font-style: italic;
+          }
+        }
+
+        p {
+          color: $tertiary-color;
+        }
+      }
+
+      .additional {
+        display: flex;
+        gap: 10px;
+
+        p {
+          padding: 10px 30px;
+          color: $tertiary-color;
+          border-radius: 10px;
+          border: 2px solid $tertiary-color;
+        }
+      }
+
+      button {
+        background-color: $tertiary-color;
+        padding: 10px;
+        font-size: 1rem;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all ease-in-out 0.2s;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}

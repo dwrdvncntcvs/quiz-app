@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ProfileData from "../components/Profile/ProfileData";
+import ProfileQuizzes from "../components/Profile/ProfileQuizzes";
 import { destroyAuth, useAuth } from "../features/slice/authSlice";
 import PageContainer from "../layouts/PageContainer";
 import { useGetAllTakenQuizzesQuery } from "../services/quizResult";
@@ -13,13 +14,16 @@ const Profile = () => {
   const { user } = useAuth();
   const isQuizzer = user?.role === "quizzer";
   const isQuizee = user?.role === "quizee";
-  const { data: quizzesData, isLoading: isQuizDataLoading } =
-    useGetAllTakenQuizzesQuery(
-      { userId: user?._id },
-      {
-        skip: isQuizzer,
-      }
-    );
+  const {
+    data: quizzesData,
+    isLoading: isQuizDataLoading,
+    refetch,
+  } = useGetAllTakenQuizzesQuery({ userId: user?._id }, { skip: isQuizzer });
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
+
   const [signOut] = useLogOutMutation();
   const navigate = useNavigate();
 
@@ -42,21 +46,7 @@ const Profile = () => {
         onSignOut={signOutAction}
       />
       {isQuizee && (
-        <div>
-          <h1>Quizzes Taken</h1>
-          {isQuizDataLoading && <p>Loading ...</p>}
-          {!isQuizDataLoading &&
-            quizzesData?.map((quiz) => (
-              <div key={quiz?._id}>
-                <h2>{quiz?.title}</h2>
-                <p>{quiz?.author}</p>
-                <p>{quiz?.description}</p>
-                <p>Attempt: {quiz?.attempts}</p>
-                <p>Total: {quiz?.totalItems}</p>
-                <button>View Records</button>
-              </div>
-            ))}
-        </div>
+        <ProfileQuizzes data={quizzesData} isLoading={isQuizDataLoading} />
       )}
     </PageContainer>
   );
