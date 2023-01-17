@@ -1,0 +1,74 @@
+@import "./global.scss";
+
+.profile-data {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 10px;
+  gap: 20px;
+
+  .user-logo {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    border: 5px solid $tertiary-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    font-weight: bold;
+    color: $tertiary-color;
+    align-self: center;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p:nth-child(1) {
+      font-size: 2rem;
+      font-weight: 500;
+      color: $tertiary-color;
+    }
+
+    p:nth-child(2) {
+      font-size: 1rem;
+      color: gray;
+      font-style: italic;
+    }
+
+    p:nth-child(3) {
+      font-size: 1.25rem;
+      color: $tertiary-color;
+    }
+  }
+
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    button {
+      border: 3px solid $tertiary-color;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1rem;
+      background-color: transparent;
+      color: $tertiary-color;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all ease-in-out 0.2s;
+
+      &:hover {
+        background-color: $tertiary-color;
+        color: white;
+      }
+    }
+
+    #delete:hover {
+      border-color: $danger-color;
+      background-color: $danger-color;
+    }
+  }
+}

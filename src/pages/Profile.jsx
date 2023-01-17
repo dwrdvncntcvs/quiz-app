@@ -1,8 +1,9 @@
 import React from "react";
+import ProfileData from "../components/Profile/ProfileData";
 import { useAuth } from "../features/slice/authSlice";
 import PageContainer from "../layouts/PageContainer";
 import { useGetAllTakenQuizzesQuery } from "../services/quizResult";
-import { extractInitials, mergeName } from "../utils/helpers";
+import scss from "../styles/profile.module.scss";
 
 const Profile = () => {
   const { user } = useAuth();
@@ -17,18 +18,8 @@ const Profile = () => {
     );
 
   return (
-    <PageContainer>
-      <div>
-        <>
-          <div>{extractInitials(user?.first_name, user?.last_name)}</div>
-          <div>
-            <p>{mergeName(user?.first_name, user?.last_name)}</p>
-            <p>{user?.username}</p>
-            <p>{user?.role}</p>
-          </div>
-          <button>Delete User</button>
-        </>
-      </div>
+    <PageContainer className={scss.profile}>
+      <ProfileData user={user} />
       {isQuizee && (
         <div>
           <h1>Quizzes Taken</h1>
