@@ -1,8 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import QuizData from "../components/QuizResult/QuizData";
+import ResultDetails from "../components/QuizResult/ResultDetails";
 import PageContainer from "../layouts/PageContainer";
 import { useGetQuizResultQuery } from "../services/quizResult";
-import { fromNow, transformDate } from "../utils/helpers";
+import scss from "../styles/quizResult.module.scss";
 
 const QuizResult = () => {
   const { quizResultId } = useParams();
@@ -11,27 +13,20 @@ const QuizResult = () => {
 
   return (
     <PageContainer>
-      <div>
-        <h1>{data?.quiz.title}</h1>
-        <p>By {data?.quiz.author}</p>
-        <p>{data?.quiz.description}</p>
-
-        <h2>
-          {data?.totalItems} Question{data?.totalItems > 1 ? "s" : ""}
-        </h2>
+      <QuizData quiz={data?.quiz} totalItems={data?.totalItems} />
+      <div className={scss.content}>
+        <ResultDetails
+          date={data?.date}
+          percentage={data?.percentage}
+          score={data?.score}
+          totalItems={data?.totalItems}
+          user={data?.user}
+        />
+        <div className={scss["btn-group"]}>
+          <button>Retake Quiz</button>
+          <button>Take More Quizzes</button>
+        </div>
       </div>
-      <div>
-        <h1>Result</h1>
-        <p>
-          Date: {transformDate(data?.date)} | {fromNow(data?.date)}
-        </p>
-        <p>Quizee: {data?.user.name}</p>
-        <p>
-          Score: {data?.score} / {data?.totalItems}
-        </p>
-        <p>Percentage: {data?.percentage}%</p>
-      </div>
-      <button>Take More Quizzes</button>
     </PageContainer>
   );
 };
