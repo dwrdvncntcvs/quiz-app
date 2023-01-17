@@ -2,7 +2,7 @@ import React from "react";
 import { extractInitials, mergeName } from "../../utils/helpers";
 import scss from "../../styles/profileData.module.scss";
 
-const ProfileData = ({ user }) => {
+const ProfileData = ({ user, onSignOut, onDeleteUser }) => {
   return (
     <div className={scss["profile-data"]}>
       <div className={scss["user-logo"]}>
@@ -14,8 +14,10 @@ const ProfileData = ({ user }) => {
         <p>{user?.role.toLocaleUpperCase()}</p>
       </div>
       <div className={scss["btn-group"]}>
-        <button id={scss.delete}>Delete User</button>
-        <button>Sign Out</button>
+        <button id={scss.delete} onClick={onDeleteUser}>
+          Delete User
+        </button>
+        <button onClick={onSignOut}>Sign Out</button>
       </div>
     </div>
   );
