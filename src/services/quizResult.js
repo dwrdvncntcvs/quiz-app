@@ -20,9 +20,20 @@ const quizResultApi = createApi({
       }),
       invalidatesTags: ["QuizResult"],
     }),
+    getAllTakenQuizzes: builder.query({
+      query: ({ userId }) => ({
+        url: `/quizResults/quiz-taken/${userId}`,
+        method: "GET",
+      }),
+      invalidatesTags: ["QuizResult"],
+    }),
   }),
 });
 
 export default quizResultApi;
 
-export const { useSaveScoreMutation, useGetQuizResultQuery } = quizResultApi;
+export const {
+  useSaveScoreMutation,
+  useGetQuizResultQuery,
+  useGetAllTakenQuizzesQuery,
+} = quizResultApi;

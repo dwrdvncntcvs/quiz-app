@@ -45,6 +45,7 @@ const Navigation = () => {
     {
       label: "Profile",
       onClick: () => {
+        setToggle(false);
         navigate({ pathname: "/profile" });
       },
     },
