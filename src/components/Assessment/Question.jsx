@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import scss from "../../styles/question.module.scss";
+import OptionsList from "./OptionsList";
+import QuestionHeader from "./QuestionHeader";
 
 const Question = ({
   questionId,
@@ -18,25 +20,13 @@ const Question = ({
 
   return (
     <li className={scss.question}>
-      <div className={scss.header}>
-        <p>
-          {questionIndex}. {question}
-        </p>
-      </div>
-      <ul className={scss.choices}>
-        {options.map(({ _id: optionId, option: optionLabel }) => {
-          return (
-            <li key={optionId} className={scss.option}>
-              <button
-                className={option.optionId === optionId ? scss.selected : ""}
-                onClick={() => selectOption(optionId, questionId)}
-              >
-                {optionLabel}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <QuestionHeader question={question} questionIndex={questionIndex} />
+      <OptionsList
+        onSelectOption={selectOption}
+        options={options}
+        questionId={questionId}
+        selectedOption={option}
+      />
     </li>
   );
 };

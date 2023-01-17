@@ -6,6 +6,7 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom";
+import AssessmentHeader from "../components/Assessment/AssessmentHeader";
 import Question from "../components/Assessment/Question";
 import useQuizAssessment from "../hooks/useQuizAssessment";
 import PageContainer from "../layouts/PageContainer";
@@ -43,11 +44,8 @@ const QuizAssessment = () => {
 
   return (
     <PageContainer className={scss["quiz-assessment"]}>
-      <div className={scss.header}>
-        <h1>{quizTitle}</h1>
-        <p>Quiz ID: {quizId}</p>
-      </div>
-      <ol className={scss.questions}>
+      <AssessmentHeader quizId={quizId} quizTitle={quizTitle} />
+      <ul className={scss.questions}>
         {data?.map(({ _id: questionId, question, options }, i) => (
           <Question
             key={questionId}
@@ -58,7 +56,7 @@ const QuizAssessment = () => {
             questionIndex={i + 1}
           />
         ))}
-      </ol>
+      </ul>
       <button
         className={scss.submit}
         disabled={!isQuizCompleted}
