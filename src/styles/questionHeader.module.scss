@@ -4,8 +4,11 @@
   border-radius: 20px 20px 0px 0px;
   background-color: $tertiary-color;
   padding: 25px;
+
   p {
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    white-space: pre-wrap;
+    font-weight: 300;
   }
 }
