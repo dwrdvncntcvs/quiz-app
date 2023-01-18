@@ -4,7 +4,6 @@ import RecordsTable from "../components/Records/RecordsTable";
 import { useAuth } from "../features/slice/authSlice";
 import { useGetQuizRecordsQuery } from "../services/quizResult";
 import scss from "../styles/quizRecord.module.scss";
-import { transformDate } from "../utils/helpers";
 
 const QuizRecord = () => {
   const { user } = useAuth();

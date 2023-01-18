@@ -33,9 +33,9 @@ function App() {
             <Route path="/" element={<Home />} />
           </Route>
 
-          <Route path="/quizzer/" element={<Persistence />}>
+          <Route element={<Persistence />}>
             <Route element={<RequiredAuth role={"quizzer"} />}>
-              <Route path="" element={<QuizzerHome />}>
+              <Route path="/quizzer/" element={<QuizzerHome />}>
                 <Route
                   path="create-quiz"
                   element={<QuizModifier title={"Create Quiz"} />}
@@ -45,15 +45,18 @@ function App() {
                   element={<QuizModifier title={"Update Quiz"} />}
                 />
               </Route>
-              <Route path="quiz/:quizId" element={<QuizDetails />} />
+              <Route path="/quizzer/quiz/:quizId" element={<QuizDetails />} />
             </Route>
           </Route>
 
-          <Route path="/quizee/" element={<Persistence />}>
+          <Route element={<Persistence />}>
             <Route element={<RequiredAuth role={"quizee"} />}>
-              <Route path="assessment/:quizId" element={<QuizAssessment />} />
               <Route
-                path="assessment/:quizId/result/:quizResultId"
+                path="/quizee/assessment/:quizId"
+                element={<QuizAssessment />}
+              />
+              <Route
+                path="/quizee/assessment/:quizId/result/:quizResultId"
                 element={<QuizResult />}
               />
             </Route>
