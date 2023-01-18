@@ -17,6 +17,7 @@ import AuthRoutes from "./routes/AuthRoutes";
 import QuizAssessment from "./pages/QuizAssessment";
 import QuizResult from "./pages/QuizResult";
 import Profile from "./pages/Profile";
+import QuizRecord from "./pages/QuizRecord";
 
 function App() {
   return (
@@ -60,7 +61,9 @@ function App() {
 
           <Route path="/profile" element={<Persistence />}>
             <Route element={<RequiredAuth />}>
-              <Route path="" element={<Profile />} />
+              <Route path="" element={<Profile />}>
+                <Route path="quiz-record/:quizId" element={<QuizRecord />} />
+              </Route>
             </Route>
           </Route>
 

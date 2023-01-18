@@ -1,7 +1,17 @@
 import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import scss from "../../styles/profileQuiz.module.scss";
 
 const ProfileQuizzes = ({ isLoading, data }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const viewRecordAction = (quizId) => (e) => {
+    console.log("Quiz ID: ", quizId);
+    navigate(`quiz-record/${quizId}`, {
+      state: { from: location.pathname, quizId },
+    });
+  };
+
   return (
     <div className={scss.quizzes}>
       <h1>Quizzes Taken</h1>
@@ -26,7 +36,7 @@ const ProfileQuizzes = ({ isLoading, data }) => {
                   </p>
                 </div>
               </div>
-              <button>View Records</button>
+              <button onClick={viewRecordAction(quiz._id)}>View Records</button>
             </div>
           ))}
       </div>

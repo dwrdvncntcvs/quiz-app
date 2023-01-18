@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import ProfileData from "../components/Profile/ProfileData";
 import ProfileQuizzes from "../components/Profile/ProfileQuizzes";
 import { destroyAuth, useAuth } from "../features/slice/authSlice";
@@ -52,6 +52,8 @@ const Profile = () => {
       {isQuizee && (
         <ProfileQuizzes data={quizzesData} isLoading={isQuizDataLoading} />
       )}
+      {isQuizzer && <div>Content Will Be Added Soon</div>}
+      <Outlet />
     </PageContainer>
   );
 };

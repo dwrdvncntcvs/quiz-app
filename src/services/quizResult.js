@@ -27,6 +27,12 @@ const quizResultApi = createApi({
       }),
       invalidatesTags: ["QuizResult"],
     }),
+    getQuizRecords: builder.query({
+      query: ({ userId, quizId }) => ({
+        url: `/quizResults/${quizId}/user/${userId}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -36,4 +42,5 @@ export const {
   useSaveScoreMutation,
   useGetQuizResultQuery,
   useGetAllTakenQuizzesQuery,
+  useGetQuizRecordsQuery,
 } = quizResultApi;

@@ -31,6 +31,7 @@ const revertURLQueryToPlainText = (data) => {
 const generatePathBasedOnRole = (role) => {
   if (role === "quizzer") return "/quizzer";
   else if (role === "quizee") return "/";
+  else return "/";
 };
 
 export {
