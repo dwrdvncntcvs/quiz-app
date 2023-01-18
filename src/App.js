@@ -18,6 +18,7 @@ import QuizAssessment from "./pages/QuizAssessment";
 import QuizResult from "./pages/QuizResult";
 import Profile from "./pages/Profile";
 import QuizRecord from "./pages/QuizRecord";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -70,7 +71,7 @@ function App() {
             </Route>
           </Route>
 
-          <Route path="*" element={<div>Page Not Found</div>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </ContentContainer>
       <ToastContainer position="bottom-right" />
