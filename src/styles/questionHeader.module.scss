@@ -10,5 +10,13 @@
     font-size: 1.25rem;
     white-space: pre-wrap;
     font-weight: 300;
+
+    @include tablet {
+      font-size: 1rem;
+    }
+
+    @include phone {
+      font-size: 1rem;
+    }
   }
 }

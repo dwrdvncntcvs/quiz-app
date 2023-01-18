@@ -7,6 +7,15 @@
   width: 700px;
   border: 5px solid $tertiary-color;
   border-radius: 20px;
+  transition: all ease-in-out 0.2s;
+
+  @include tablet {
+    width: 100%;
+  }
+
+  @include phone {
+    width: 100%;
+  }
 
   .header,
   .content {
@@ -17,12 +26,37 @@
     background-color: $tertiary-color;
     color: white;
 
+    h1 {
+      transition: all ease-in-out 0.2s;
+
+      @include tablet {
+        font-size: 2rem;
+      }
+
+      @include phone {
+        font-size: 1.5rem;
+      }
+    }
+
     p:nth-child(2) {
       font-style: italic;
+      transition: all ease-in-out 0.2s;
+
+      @include tablet {
+        font-size: 1rem;
+      }
+
+      @include phone {
+        font-size: 1rem;
+      }
     }
 
     p:nth-child(3) {
       font-size: 2rem;
+
+      @include phone {
+        font-size: 1.5rem;
+      }
     }
   }
 

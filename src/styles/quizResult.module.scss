@@ -4,6 +4,18 @@
   display: flex;
   gap: 20px;
 
+  transition: all ease-in-out 0.2s;
+
+  @include tablet {
+    flex-direction: column;
+    font-size: 1.5rem;
+  }
+
+  @include phone {
+    flex-direction: column;
+    font-size: 1.25rem;
+  }
+
   .btn-group {
     display: flex;
     flex-direction: column;
@@ -19,6 +31,15 @@
       color: $tertiary-color;
       transition: all ease-in-out 0.2s;
       cursor: pointer;
+      transition: all ease-in-out 0.2s;
+
+      @include tablet {
+        width: 100%;
+      }
+
+      @include phone {
+        width: 100%;
+      }
 
       &:hover {
         background-color: $tertiary-color;

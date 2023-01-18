@@ -44,15 +44,17 @@ const Profile = () => {
 
   return (
     <PageContainer className={scss.profile}>
-      <ProfileData
-        user={user}
-        onDeleteUser={deleteUserAction}
-        onSignOut={signOutAction}
-      />
-      {isQuizee && (
-        <ProfileQuizzes data={quizzesData} isLoading={isQuizDataLoading} />
-      )}
-      {isQuizzer && <div>Content Will Be Added Soon</div>}
+      <div className={scss.content}>
+        <ProfileData
+          user={user}
+          onDeleteUser={deleteUserAction}
+          onSignOut={signOutAction}
+        />
+        {isQuizee && (
+          <ProfileQuizzes data={quizzesData} isLoading={isQuizDataLoading} />
+        )}
+        {isQuizzer && <div>Content Will Be Added Soon</div>}
+      </div>
       <Outlet />
     </PageContainer>
   );

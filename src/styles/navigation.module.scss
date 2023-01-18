@@ -7,6 +7,15 @@ nav {
   width: 100%;
   padding: 1rem 6rem;
   background-color: white;
+  transition: all ease-in-out 0.2s;
+
+  @include tablet {
+    padding: 1rem 4rem;
+  }
+  
+  @include phone {
+    padding: 1rem 4rem;
+  }
 
   .title {
     font-size: 2rem;

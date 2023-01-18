@@ -10,6 +10,19 @@
   border-radius: 10px;
   border: 5px solid $tertiary-color;
   gap: 5px;
+  transition: all eas-in-out 0.2s;
+
+  @include LGtablet {
+    width: 48%;
+  }
+
+  @include tablet {
+    width: 100%;
+  }
+
+  @include phone {
+    width: 100%;
+  }
 
   .header,
   .footer,

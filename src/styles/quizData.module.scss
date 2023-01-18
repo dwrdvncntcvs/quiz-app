@@ -9,12 +9,30 @@
     h1 {
       font-size: 4rem;
       color: $tertiary-color;
+      transition: all ease-in-out 0.2s;
+
+      @include tablet {
+        font-size: 3rem;
+      }
+
+      @include phone {
+        font-size: 2rem;
+      }
     }
 
     p {
       font-size: 1.5rem;
       color: gray;
       font-style: italic;
+      transition: all ease-in-out 0.2s;
+
+      @include tablet {
+        font-size: 1.25rem;
+      }
+
+      @include phone {
+        font-size: 1rem;
+      }
     }
   }
 
@@ -27,12 +45,31 @@
       font-size: 2rem;
       font-weight: 200;
       color: $tertiary-color;
+      transition: all ease-in-out 0.2s;
+
+      @include tablet {
+        font-size: 1.5rem;
+      }
+
+      @include phone {
+        font-size: 1.25rem;
+      }
     }
 
     h2 {
       font-size: 1.75rem;
       color: $tertiary-color;
       font-style: italic;
+
+      transition: all ease-in-out 0.2s;
+
+      @include tablet {
+        font-size: 1.5rem;
+      }
+
+      @include phone {
+        font-size: 1.25rem;
+      }
     }
   }
 }

@@ -1,3 +1,5 @@
+@import "./global.scss";
+
 .page-container {
   display: flex;
   flex-direction: column;
@@ -5,4 +7,13 @@
   width: 80%;
   height: 100%;
   padding: 20px;
+  transition: all ease-in-out 0.2s;
+
+  @include tablet {
+    width: 90%;
+  }
+  
+  @include phone {
+    width: 90%;
+  }
 }

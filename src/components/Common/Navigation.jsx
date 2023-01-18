@@ -108,7 +108,6 @@ const Navigation = () => {
                 <div className={scss.icon}>
                   {extractInitials(first_name, last_name)}
                 </div>{" "}
-                {username}
               </button>
             </SelectOptions>
           </li>

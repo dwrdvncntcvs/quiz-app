@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding: 20px 0px;
 
   h1 {
     color: $tertiary-color;
@@ -14,6 +15,23 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    transition: all ease-in-out 0.2s;
+
+    @include desktop {
+      flex-direction: column;
+    }
+
+    @include LGtablet {
+      flex-direction: column;
+    }
+
+    @include tablet {
+      flex-direction: column;
+    }
+
+    @include phone {
+      flex-direction: column;
+    }
 
     .quiz {
       display: flex;
@@ -24,6 +42,22 @@
       border-radius: 20px;
       justify-content: space-between;
       gap: 20px;
+
+      @include desktop {
+        width: 100%;
+      }
+
+      @include LGtablet {
+        width: 100%;
+      }
+
+      @include tablet {
+        width: 100%;
+      }
+
+      @include phone {
+        width: 100%;
+      }
 
       .quiz-content {
         display: flex;

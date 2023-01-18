@@ -17,6 +17,16 @@
   cursor: pointer;
   transition: all ease 0.2s;
 
+  @include tablet {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  @include phone {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
   &:hover {
     outline: 5px solid $secondary-color;
   }

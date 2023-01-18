@@ -5,7 +5,20 @@
   flex-direction: column;
   list-style-type: none;
   font-weight: bold;
-  width: 800px;
+  width: 900px;
   padding: 15px;
   border-radius: 10px;
+  transition: all ease-in-out 0.2s;
+
+  @include LGtablet {
+    width: 750px;
+  }
+
+  @include tablet {
+    width: 650px;
+  }
+
+  @include phone {
+    width: 450px;
+  }
 }

@@ -4,8 +4,6 @@
   align-items: center;
   gap: 30px;
 
-
-
   .questions {
     display: flex;
     flex-direction: column;
@@ -27,6 +25,16 @@
     background-color: white;
     cursor: pointer;
     transform: rotateZ(45deg);
+
+    @include tablet {
+      bottom: 20px;
+      right: 20px;
+    }
+
+    @include phone {
+      bottom: 20px;
+      right: 20px;
+    }
 
     &:hover {
       background-color: $tertiary-color;

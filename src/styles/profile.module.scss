@@ -1,4 +1,23 @@
+@import "./global.scss";
+
 .profile {
   display: flex;
   flex-direction: row;
+
+  .content {
+    display: flex;
+    gap: 20px;
+
+    @include LGtablet {
+      flex-direction: column;
+    }
+
+    @include tablet {
+      flex-direction: column;
+    }
+
+    @include phone {
+      flex-direction: column;
+    }
+  }
 }
