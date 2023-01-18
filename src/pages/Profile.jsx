@@ -6,7 +6,7 @@ import ProfileQuizzes from "../components/Profile/ProfileQuizzes";
 import { destroyAuth, useAuth } from "../features/slice/authSlice";
 import PageContainer from "../layouts/PageContainer";
 import { useGetAllTakenQuizzesQuery } from "../services/quizResult";
-import { useLogOutMutation } from "../services/user";
+import { useDeleteUserMutation, useLogOutMutation } from "../services/user";
 import scss from "../styles/profile.module.scss";
 
 const Profile = () => {
@@ -17,12 +17,13 @@ const Profile = () => {
   const {
     data: quizzesData,
     isLoading: isQuizDataLoading,
-    refetch,
+    refetch: refetchQuizData,
   } = useGetAllTakenQuizzesQuery({ userId: user?._id }, { skip: isQuizzer });
+  const [deleteUser] = useDeleteUserMutation();
 
   useEffect(() => {
-    refetch();
-  }, [refetch]);
+    if (isQuizee) refetchQuizData();
+  }, [refetchQuizData, isQuizee]);
 
   const [signOut] = useLogOutMutation();
   const navigate = useNavigate();
@@ -36,6 +37,9 @@ const Profile = () => {
 
   const deleteUserAction = async () => {
     console.log("Deleting user profile...");
+    await deleteUser();
+    dispatch(destroyAuth());
+    navigate("/", { replace: true });
   };
 
   return (

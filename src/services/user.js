@@ -38,6 +38,16 @@ export const userApi = createApi({
         };
       },
     }),
+    deleteUser: builder.mutation({
+      query: () => {
+        localStorage.removeItem("u");
+        localStorage.removeItem("at");
+        return {
+          url: "/users/",
+          method: "DELETE",
+        };
+      },
+    }),
   }),
 });
 
@@ -46,4 +56,5 @@ export const {
   useAuthorizeUserMutation,
   useLogOutMutation,
   useGetUserQuery,
+  useDeleteUserMutation,
 } = userApi;
