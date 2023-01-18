@@ -1,10 +1,16 @@
 @import "./global.scss";
 
 .table {
+  margin: 10px 0px;
   width: 100%;
 
   tbody {
     text-align: center;
+
+    th {
+      font-size: 1.25rem;
+      color: $tertiary-color;
+    }
 
     td {
       width: 25%;
