@@ -42,57 +42,6 @@
       gap: 20px;
       align-self: center;
     }
-
-    .user-logo {
-      width: 200px;
-      height: 200px;
-      border-radius: 100%;
-      border: 5px solid $tertiary-color;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 4rem;
-      font-weight: bold;
-      color: $tertiary-color;
-      align-self: center;
-      transition: all ease-in-out 0.2s;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: all ease-in-out 0.2s;
-
-      @include LGtablet {
-        align-items: flex-start;
-      }
-
-      @include tablet {
-        align-items: flex-start;
-      }
-
-      @include phone {
-        align-items: flex-start;
-      }
-      p:nth-child(1) {
-        font-size: 1.5rem;
-        font-weight: 500;
-        color: $tertiary-color;
-      }
-
-      p:nth-child(2) {
-        font-size: 1rem;
-        color: gray;
-        font-style: italic;
-      }
-
-      p:nth-child(3) {
-        font-size: 1.25rem;
-        color: $tertiary-color;
-      }
-    }
   }
 
   .btn-group {

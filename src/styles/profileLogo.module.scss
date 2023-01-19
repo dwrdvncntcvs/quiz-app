@@ -1,0 +1,16 @@
+@import "./global.scss";
+
+.user-logo {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  border: 5px solid $tertiary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: $tertiary-color;
+  align-self: center;
+  transition: all ease-in-out 0.2s;
+}
