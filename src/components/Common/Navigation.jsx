@@ -14,7 +14,7 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { first_name, last_name, username } = user;
+  const { first_name, last_name } = user;
 
   const toggleAction = () => {
     setToggle(!toggle);
