@@ -1,0 +1,17 @@
+name: sample-github-actions
+
+on: 
+  push: 
+    branches: [master]
+  
+jobs:
+  sample-github-actions:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - run: echo Hello World
+      - run: echo Running GitHub Actions
+      - run: npm -v
+      - run: node -v
+    
